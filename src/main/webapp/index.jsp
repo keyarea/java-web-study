@@ -6,8 +6,9 @@
 --%>
 
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<jsp:include page="WEB-INF/page/_partial/head.jsp" flush="true">
-    <jsp:param name="pageTitle" value="123" />
+<jsp:include page="/WEB-INF/page/_partial/head.jsp" flush="true">
+    <jsp:param name="pageTitle" value="首页" />
+    <jsp:param name="pageStyle" value="css/index.css" />
 </jsp:include>
-<h1>hello</h1>
-<%@include file="WEB-INF/page/_partial/footer.jsp"%>
+<h1>首页</h1>
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
