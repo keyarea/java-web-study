@@ -10,5 +10,7 @@
     <jsp:param name="pageTitle" value="首页" />
     <jsp:param name="pageStyle" value="css/index.css" />
 </jsp:include>
+<jsp:include page="WEB-INF/page/_partial/header.jsp" flush="true" />
 <h1>首页</h1>
 <%@include file="/WEB-INF/page/_partial/footer.jsp"%>
+<%@include file="/WEB-INF/page/_partial/script.jsp"%>

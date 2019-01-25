@@ -1,3 +1,31 @@
-.bg {
-    background: #1b6d85;
+.loginNav {
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
 }
+
+.loginLogo {
+    line-height: 60px;
+}
+
+.content {
+    padding: 65px 15px;
+}
+
+.loginForm {
+    padding: 10px;
+}
+
+.signInForm {
+    padding: 10px;
+}
+
+.form-item {
+    padding: 10px 5px;
+    font-size: 1.3em;
+}
+
+.loginTabs {
+    font-size: 1.5em;
+}
+
