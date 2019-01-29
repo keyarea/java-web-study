@@ -26,6 +26,13 @@ public class LoginUIServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        doGet(request, response);
+        String name = request.getParameter("username");
+        String password = request.getParameter("password");
+        // 请求调度器
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/login.jsp");
+
+        // 提供调度request到另一个资源（servlet/jsp/html）的功能
+        view.forward(request, response);
     }
+
 }
