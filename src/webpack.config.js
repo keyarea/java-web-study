@@ -19,7 +19,7 @@ var pathToClean = [
 
 var cleanOptions = {
     watch: true,
-    exclude: ['index.jsp']
+    exclude: ['index.jsp', 'favicon.ico']
 };
 
 module.exports = {
