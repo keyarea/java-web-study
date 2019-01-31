@@ -12,14 +12,15 @@ var minifyHTML = {
 };
 
 var pathToClean = [
-    'main/*.*',
-    'main/img/*',
-    'main/font/*'
+    'main/webapp/*.js',
+    'main/webapp/*.map',
+    'main/webapp/*.css'
 ];
 
 var cleanOptions = {
     watch: true,
-    exclude: ['index.jsp', 'favicon.ico']
+    verbose: true,
+    exclude: ['main/index.jsp']
 };
 
 module.exports = {
