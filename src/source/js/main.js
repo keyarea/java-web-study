@@ -5,3 +5,5 @@ require("bootstrap");
 require('../sass/main.scss');
 // js
 require('./main');
+// 图片
+require('../img/tool.svg');
