@@ -7,9 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header id="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info p-3 text-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
         <div class="container font-weight-bold">
-            <a class="navbar-brand" href="#">LOONG.IO</a>
+            <a class="navbar-brand" href="#">方寸之间</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,9 +35,11 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="输入你想要搜索的内容" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="输入搜索的内容" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
                 </form>
+
+                <button type="button" class="btn btn-success ml-0 ml-lg-4">管理</button>
             </div>
         </div>
     </nav>
