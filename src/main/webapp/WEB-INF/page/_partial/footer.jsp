@@ -8,11 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h5 class="display-9">FangCun.net</h5>
-        <p class="lead">方寸之间，可见天地。</p>
+        <blockquote class="blockquote">
+            <p class="mb-0">方寸之间见天地，细微之处有乾坤。</p>
+            <footer class="blockquote-footer"><cite title="Source Title">FangCun.net</cite></footer>
+        </blockquote>
         <hr>
-        Copyright © 2011-2019 &nbsp;&nbsp;   FangCun.NET  &nbsp;&nbsp;
-        浙ICP备 15005796号-2
+        <p class="lead">
+            Copyright © <a href="http://github.com/keyarea">keyarea</a> 2019  &nbsp;&nbsp;&nbsp; 鲁ICP备15027646号-2
+        </p>
     </div>
 </div>
 <%@include file="script.jsp"%>
