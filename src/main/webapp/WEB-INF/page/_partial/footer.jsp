@@ -14,7 +14,7 @@
         </blockquote>
         <hr>
         <p class="lead">
-            Copyright © <a href="http://github.com/keyarea">keyarea</a> 2019  &nbsp;&nbsp;&nbsp; 鲁ICP备15027646号-2
+            Copyright © <a href="http://github.com/keyarea" target="_blank">keyarea</a> 2019  &nbsp;&nbsp;&nbsp; 鲁ICP备15027646号-2
         </p>
     </div>
 </div>

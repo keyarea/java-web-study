@@ -38,6 +38,11 @@
                         <label for="exampleInputPassword1">密码</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
                     </div>
+                    <div class="form-group">
+                        <label for="verificationCode" class="d-block">验证码</label>
+                        <input type="text" class="form-control w-50 d-inline-block" id="verificationCode" placeholder="请输入验证码">
+                        <img src="getVerifyCode" class="align-middle" id="verifyCode" onclick="changeVerifyCode()">
+                    </div>
                     <button type="submit" class="btn btn-success btn-block">登录</button>
                 </form>
             </div>
@@ -48,6 +53,8 @@
         </div>
     </div>
 </div>
+
+<%@include file="_partial/script.jsp"%>
 
 
 </body>

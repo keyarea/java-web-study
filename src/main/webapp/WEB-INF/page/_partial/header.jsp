@@ -9,7 +9,9 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
         <div class="container font-weight-bold">
-            <a class="navbar-brand" href="#">方寸</a>
+            <a class="navbar-brand" href="#">
+                <img src="img/fc.png" height="30" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,7 +41,7 @@
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
                 </form>
 
-                <button type="button" class="btn btn-success ml-0 ml-lg-4" da>管理</button>
+                <button type="button" class="btn btn-success ml-0 ml-lg-4" >管理</button>
             </div>
         </div>
     </nav>

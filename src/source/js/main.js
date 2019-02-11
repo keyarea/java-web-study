@@ -4,7 +4,7 @@ require("bootstrap");
 //样式
 require('../sass/main.scss');
 // js
-require('./main');
+require('./login.js');
 // 图片
 require('../img/fc.png');
 require('../img/tool.svg');
