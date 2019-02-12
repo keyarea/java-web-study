@@ -1,4 +1,5 @@
-module.exports.changeVerifyCode = function () {
-    console.log("hello");
-    //$("#verifyCode").load("getVerifyCode");
-};
+var $ = require('jquery');
+$("#verifyCode").click(function(){
+    $(this).attr("src", 'getVerifyCode?' + Math.random());
+});
+
