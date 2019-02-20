@@ -3,22 +3,18 @@ package net.fangcun.domain;
 import java.io.Serializable;
 
 /**
- * 用户实体类
+ * 标签实体类
  * @author keyarea
  *
  */
 
-public class User implements Serializable {
 
-    // 用户id
+public class Tag implements Serializable {
+    // 标签id
     private String id;
-    // 用户名
+    // 标签名
     private String name;
-    // 用户昵称
-    private String nickname;
-    // 用户密码
-    private String password;
-    // 用户文章
+    // 标签下的文章
     private Article article;
 
     public Article getArticle() {
@@ -43,21 +39,5 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 }
