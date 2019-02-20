@@ -29,14 +29,14 @@
                 登录
             </div>
             <div class="card-body p-3 p-sm-3 p-md-4 p-lg-5">
-                <form>
+                <form method="post" action="login">
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">密码</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
                     </div>
                     <div class="form-group">
                         <label for="verificationCode" class="d-block">验证码</label>

@@ -1,7 +1,7 @@
 CREATE TABLE user
 (
   `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `name`     VARCHAR(20) NOT NULL COMMENT '用户名',
+  `name`     VARCHAR(20) UNIQUE NOT NULL COMMENT '用户名',
   `nickname` VARCHAR(20) NOT NULL DEFAULT '用户' COMMENT '用户昵称',
   `password` VARCHAR(20) NOT NULL COMMENT '用户密码',
   PRIMARY KEY (`id`)
