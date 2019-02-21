@@ -11,6 +11,8 @@ import java.sql.Statement;
 
 public class UserImpl implements IUserDao {
 
+    private static UserImpl instance;
+
     @Override
     public User find(String name, String password){
         Connection connection = null;
@@ -109,5 +111,16 @@ public class UserImpl implements IUserDao {
             // 执行完成之后释放相关资源
             JdbcUtils_C3P0.release(connection, statement, resultSet);
         }
+    }
+
+    public static final UserImpl getInstance(){
+        if (instance == null) {
+            try {
+                instance = new UserImpl();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return instance;
     }
 }

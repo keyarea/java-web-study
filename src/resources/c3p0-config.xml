@@ -34,7 +34,7 @@ static{
     -->
     <named-config name="MySQL">
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/blog</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/blog?serverTimezone=GMT%2B8</property>
         <property name="user">root</property>
         <property name="password">123456</property>
 

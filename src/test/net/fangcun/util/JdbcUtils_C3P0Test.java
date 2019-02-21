@@ -1,7 +1,6 @@
 package net.fangcun.util;
 
 import org.junit.Test;
-import net.fangcun.util.JdbcUtils_C3P0;
 
 
 import java.sql.Connection;
