@@ -29,7 +29,7 @@
                 登录
             </div>
             <div class="card-body p-3 p-sm-3 p-md-4 p-lg-5">
-                <form method="post" action="login">
+                <form method="post" action="loginController">
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">

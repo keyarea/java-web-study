@@ -20,7 +20,6 @@ public class UserImpl implements IUserDao {
         ResultSet resultSet = null;
         User user = null;
         try{
-            user = new User();
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
@@ -30,6 +29,7 @@ public class UserImpl implements IUserDao {
             // 执行查找操作
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
+                user = new User();
                 // 设置用户id
                 user.setId(String.valueOf(resultSet.getInt("id")));
                 // 设置用户名
