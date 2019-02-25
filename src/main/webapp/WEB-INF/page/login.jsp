@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="verificationCode" class="d-block">验证码</label>
-                        <input type="text" class="form-control w-50 d-inline-block" id="verificationCode" placeholder="请输入验证码">
+                        <input type="text" name="verifyCode" class="form-control w-50 d-inline-block" id="verificationCode" placeholder="请输入验证码">
                         <img src="getVerifyCode" class="align-middle" id="verifyCode">
                     </div>
                     <button type="submit" class="btn btn-success btn-block">登录</button>
