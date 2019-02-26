@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <html>
 <head lang="en">
     <title>登录-方寸</title>
@@ -29,19 +30,28 @@
                 登录
             </div>
             <div class="card-body p-3 p-sm-3 p-md-4 p-lg-5">
-                <form method="post" action="loginController">
+                <form method="post" action="loginController" class="needs-validation">
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                        <input type="text" name="name" required value="${formBean.name}" class="form-control  ${formBean.errors.name == null ? "" : "is-invalid"}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                        <div class="invalid-feedback">
+                            ${formBean.errors.name}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">密码</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+                        <input type="password" name="password"  required value="${formBean.password}" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+
                     </div>
                     <div class="form-group">
                         <label for="verificationCode" class="d-block">验证码</label>
-                        <input type="text" name="verifyCode" class="form-control w-50 d-inline-block" id="verificationCode" placeholder="请输入验证码">
+                        <input type="text" name="verifyCode" required class="form-control w-50 d-inline-block is-invalid" id="verificationCode" placeholder="请输入验证码">
                         <img src="getVerifyCode" class="align-middle" id="verifyCode">
+
+
                     </div>
                     <button type="submit" class="btn btn-success btn-block">登录</button>
                 </form>
