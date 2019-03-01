@@ -21,6 +21,13 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        doPost(request, response);
+
+
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         //将客户端提交的表单数据封装到LoginFormBean对象中
         LoginFormBean formBean = WebUtils.request2Bean(request, LoginFormBean.class);
 
@@ -71,11 +78,6 @@ public class LoginServlet extends HttpServlet {
         request.getSession().setAttribute("user", user);
         response.sendRedirect("/admin");
 
-
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        doGet(request, response);
     }
 
 

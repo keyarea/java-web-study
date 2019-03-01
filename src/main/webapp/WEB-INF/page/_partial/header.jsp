@@ -9,7 +9,7 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
         <div class="container font-weight-bold">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="img/fc.png" height="30" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,20 +19,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">主页 <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">主页 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">归档</a>
+                        <a class="nav-link" href="/archive">归档</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             更多
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">分类</a>
-                            <a class="dropdown-item" href="#">留言板</a>
+                            <a class="dropdown-item" href="/category">分类</a>
+                            <a class="dropdown-item" href="/comment">留言板</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">关于</a>
+                            <a class="dropdown-item" href="/about">关于</a>
                         </div>
                     </li>
                 </ul>
@@ -41,7 +41,9 @@
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
                 </form>
 
-                <button type="button" class="btn btn-success ml-0 ml-lg-4" >管理</button>
+                <a href="/admin">
+                    <button type="button" class="btn btn-success ml-0 ml-lg-4" >管理</button>
+                </a>
             </div>
         </div>
     </nav>

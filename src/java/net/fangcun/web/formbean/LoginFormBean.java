@@ -34,21 +34,11 @@ public class LoginFormBean {
         if(this.name == null || this.name.trim().equals("")){
             isok = false;
             this.errors.put("name", "用户名不能为空");
-        }else{
-            /*if(!this.name.matches("^(/w{3,10})$")){
-                isok = false;
-                this.errors.put("name", "用户名必须3-8位");
-            }*/
         }
 
         if(this.password == null || this.password.trim().equals("")){
             isok = false;
             this.errors.put("password", "密码不能为空");
-        }else {
-           /* if(!this.password.matches("^(.{4,10})$")){
-                isok = false;
-                this.errors.put("password", "密码必须4-10位");
-            }*/
         }
 
         if(this.verifyCode == null || this.password.trim().equals("")){

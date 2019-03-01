@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="text-center mt-4">
-        <a href="#">
+        <a href="/">
             <img src="img/fc.png" alt="" height="50px">
             <p class="text-muted">方寸之间见天地，细微之处有乾坤。</p>
         </a>
@@ -30,34 +30,35 @@
                 登录
             </div>
             <div class="card-body p-3 p-sm-3 p-md-4 p-lg-5">
-                <form method="post" action="loginController" class="needs-validation">
+                <form method="post" action="${pageContext.request.contextPath}/login" class="needs-validation">
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
-                        <input type="text" name="name" required value="${formBean.name}" class="form-control  ${formBean.errors.name == null ? "" : "is-invalid"}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
+                        <input type="text" name="name" required value="${formBean.name}" class="form-control ${formBean.errors.name == null?"":"is-invalid"}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入用户名">
                         <div class="invalid-feedback">
                             ${formBean.errors.name}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">密码</label>
-                        <input type="password" name="password"  required value="${formBean.password}" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
-                        <div class="valid-feedback">
-                            Looks good!
+                        <input type="password" name="password"  required value="${formBean.password}" class="form-control ${formBean.errors.password == null?"":"is-invalid"}" id="exampleInputPassword1" placeholder="请输入密码">
+                        <div class="invalid-feedback">
+                            ${formBean.errors.password}
                         </div>
 
                     </div>
                     <div class="form-group">
                         <label for="verificationCode" class="d-block">验证码</label>
-                        <input type="text" name="verifyCode" required class="form-control w-50 d-inline-block is-invalid" id="verificationCode" placeholder="请输入验证码">
+                        <input type="text" name="verifyCode" required class="form-control w-50 d-inline-block ${formBean.errors.verifyCode == null?"":"is-invalid"}" id="verificationCode" placeholder="请输入验证码">
                         <img src="getVerifyCode" class="align-middle" id="verifyCode">
-
-
+                        <div class="invalid-feedback">
+                            ${formBean.errors.verifyCode}
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-success btn-block">登录</button>
                 </form>
             </div>
             <div class="card-footer text-muted text-center">
-                Copyright © <a href="#">keyarea</a> 2019 <br>
+                Copyright © <a href="http://github.com/keyarea" target="_blank">keyarea</a> 2019 <br>
                 鲁ICP备15027646号-2
             </div>
         </div>
