@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * 管理页面
+ */
 @WebServlet(urlPatterns = "/admin")
 public class AdminUIServlet extends HttpServlet {
     @Override

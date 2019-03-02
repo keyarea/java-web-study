@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
-    <a href="#" class="navbar-brand col-4 col-sm-3 col-md-2 mr-0 font-weight-bold">
+    <a href="/" class="navbar-brand col-4 col-sm-3 col-md-2 mr-0 font-weight-bold">
         方寸管理中心
     </a>
     <button class="navbar-toggler d-md-none" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

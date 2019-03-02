@@ -13,58 +13,58 @@
 </div>
 
 <div class="list-group my-4">
-    <button type="button" class="list-group-item bg-light disabled">
+    <a href="/category" class="btn list-group-item bg-light">
         热门分类
-    </button>
-    <button type="button" class="list-group-item list-group-item-action">① 疯狂的技术宅在翻译</button>
-    <button type="button" class="list-group-item list-group-item-action">② 单身狗</button>
-    <button type="button" class="list-group-item list-group-item-action">③ 程序员</button>
-    <button type="button" class="list-group-item list-group-item-action">④ 程序猿</button>
-    <button type="button" class="list-group-item list-group-item-action">⑤ 程序猿</button>
+    </a>
+    <a href="/category" class="list-group-item list-group-item-action btn">① 疯狂的技术宅在翻译</a>
+    <a href="/category" class="list-group-item list-group-item-action btn">② 单身狗</a>
+    <a href="/category" class="list-group-item list-group-item-action btn">③ 程序员</a>
+    <a href="/category" class="list-group-item list-group-item-action btn">④ 程序猿</a>
+    <a href="/category" class="list-group-item list-group-item-action btn">⑤ 程序猿</a>
 </div>
 
 <div class="list-group my-4">
-    <button type="button" class="list-group-item bg-light disabled">
+    <a href="/tag" class="list-group-item bg-light btn">
         热门标签
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         javascript
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         java
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         python
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    </a>
+    <a href="/tag" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center btn">
         C++
         <span class="badge badge-primary badge-pill">14</span>
-    </button>
+    </a>
 </div>
