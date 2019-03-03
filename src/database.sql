@@ -30,6 +30,8 @@ CREATE TABLE article
   `updateTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `category`   INT(10) UNSIGNED COMMENT '外键-文章类别',
   `content`    TEXT COMMENT '文章内容',
+  `visit`      INT(10) DEFAULT 0 COMMENT '点击量',
+  `recommend`  TINYINT(1) DEFAULT 0 COMMENT '是否推荐',
   PRIMARY KEY (`id`),
   KEY          `author` (`author`),
   CONSTRAINT `article_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`),

@@ -21,13 +21,13 @@
                    <div class="card-header">
                        <ul class="nav nav-tabs card-header-tabs">
                            <li class="nav-item">
-                               <a class="nav-link active" href="#">推荐文章</a>
+                               <a class="nav-link active btn" id="recommendArticle">推荐文章</a>
                            </li>
                            <li class="nav-item">
-                               <a class="nav-link" href="#">热门文章</a>
+                               <a class="nav-link btn" id="popularArticle">热门文章</a>
                            </li>
                            <li class="nav-item">
-                               <a class="nav-link" href="#">最新文章</a>
+                               <a class="nav-link btn" id="newArticle">最新文章</a>
                            </li>
                        </ul>
                    </div>
