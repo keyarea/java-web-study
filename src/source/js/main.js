@@ -5,6 +5,7 @@ require("bootstrap");
 require('../sass/main.scss');
 // js
 require('./login.js');
+require('./admin.js');
 // 图片
 require('../img/fc.png');
 require('../img/tool.svg');
