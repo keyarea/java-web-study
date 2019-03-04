@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -56,7 +57,7 @@
             </div>
         </div>
         <div class="col-12 col-md-9">
-            <%@include file="_partial/overview.jsp"%>
+            <jsp:include page="${contentPage}" />
         </div>
     </div>
 </div>

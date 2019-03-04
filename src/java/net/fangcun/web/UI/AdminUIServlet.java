@@ -16,6 +16,9 @@ import java.io.IOException;
 public class AdminUIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println(request.getRequestURI());
+
+        request.setAttribute("contentPage","_partial/overview.jsp");
         RequestDispatcher view = request.getRequestDispatcher("WEB-INF/page/admin.jsp");
 
         view.forward(request, response);
@@ -25,4 +28,6 @@ public class AdminUIServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         doGet(request, response);
     }
+
+
 }
