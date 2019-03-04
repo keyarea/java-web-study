@@ -45,7 +45,7 @@
                 <div class="admin-nav list-group">
                     <a href="/admin" class="list-group-item list-group-item-action">控制面板</a>
                     <a href="/admin/user" class=" list-group-item">用户管理</a>
-                    <a href="/admin/artile" class="list-group-item">文章管理</a>
+                    <a href="/admin/article" class="list-group-item">文章管理</a>
                     <a href="/admin/category" class="list-group-item">分类管理</a>
                     <a href="/admin/tag" class="list-group-item">标签管理</a>
                     <a href="/admin/comment" class="list-group-item">评论管理</a>
