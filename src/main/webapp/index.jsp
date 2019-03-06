@@ -7,11 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="utf-8" %>
 
-<jsp:include page="WEB-INF/page/_partial/head.jsp">
+<!doctype html>
+<html lang="en">
+<jsp:include page="/WEB-INF/page/_partial/head.jsp">
     <jsp:param name="pageTitle" value="首页"/>
 </jsp:include>
+<body>
 
-<%@include file="./WEB-INF/page/_partial/header.jsp"%>
+<%@include file="/WEB-INF/page/_partial/header.jsp"%>
 
 <div id="content" class="container mt-4">
     <div class="row">
@@ -90,4 +93,7 @@
     </div>
 </div>
 
-<%@include file="./WEB-INF/page/_partial/footer.jsp"%>
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
+<%@include file="/WEB-INF/page/_partial/script.jsp"%>
+</body>
+</html>

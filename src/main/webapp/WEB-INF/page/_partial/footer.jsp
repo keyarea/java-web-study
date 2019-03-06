@@ -18,8 +18,6 @@
         </p>
     </div>
 </div>
-<%@include file="script.jsp"%>
-</body>
-</html>
+
 
 

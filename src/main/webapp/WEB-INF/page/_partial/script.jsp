@@ -1,1 +1,1 @@
-<script src="./main.b167b4.js"></script>
+<script src="/main.4927c0.js"></script>

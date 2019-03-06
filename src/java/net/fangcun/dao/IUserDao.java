@@ -23,4 +23,12 @@ public interface IUserDao {
      * @param user
      */
     void add(User user);
+
+    /**
+     * 得到条件限制的部分用户
+     * @param start 开始
+     * @param limit 多少个
+     * @return 用户列表
+     */
+    User[] getPartUsers(int start, int limit);
 }

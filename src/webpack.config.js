@@ -58,7 +58,7 @@ module.exports = {
     ],
     output: { // 指定输出选项
         path: path.resolve(__dirname, "main/webapp"), // 指定的文件输出路径
-        publicPath: './',
+        publicPath: '/',
         filename: "[name].[chunkhash:6].js"  // 指定输出的文件名称
     },
     module: { // 第三方loader模块

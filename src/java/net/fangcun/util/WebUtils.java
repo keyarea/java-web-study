@@ -1,10 +1,11 @@
 package net.fangcun.util;
 
-import com.mchange.v2.beans.BeansUtils;
+
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+
 
 /**
  * 把request对象中的请求参数封装到bean中
