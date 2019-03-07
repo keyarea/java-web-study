@@ -1,5 +1,8 @@
 package net.fangcun.web.UI;
 
+import net.fangcun.dao.impl.UserImpl;
+import net.fangcun.domain.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +17,8 @@ public class AdminUserUIServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+            User[] users = UserImpl.getInstance().findPartUsers(0,10);
+            request.setAttribute("users", users);
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/admin-user.jsp");
 
             view.forward(request, response);

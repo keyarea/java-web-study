@@ -26,9 +26,9 @@ public interface IUserDao {
 
     /**
      * 得到条件限制的部分用户
-     * @param start 开始
+     * @param skip 开始
      * @param limit 多少个
      * @return 用户列表
      */
-    User[] getPartUsers(int start, int limit);
+    User[] findPartUsers(int skip, int limit);
 }

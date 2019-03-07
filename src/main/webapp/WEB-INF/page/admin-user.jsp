@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
@@ -55,33 +56,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row" class="align-middle">1</th>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">
-                                    <button type="button" class="btn-info btn  btn-sm">编辑</button>
-                                    <button type="button" class="btn btn-danger btn-sm">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="align-middle">2</th>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">
-                                    <button type="button" class="btn-info btn  btn-sm">编辑</button>
-                                    <button type="button" class="btn btn-danger btn-sm">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="align-middle">3</th>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">k</td>
-                                <td class="align-middle">
-                                    <button type="button" class="btn-info btn  btn-sm">编辑</button>
-                                    <button type="button" class="btn btn-danger btn-sm">删除</button>
-                                </td>
-                            </tr>
+                            <c:forEach var="user" items="${users}" >
+                                <tr>
+                                    <th scope="row" class="align-middle">${user.id}</th>
+                                    <td class="align-middle">${user.name}</td>
+                                    <td class="align-middle">${user.nickname}</td>
+                                    <td class="align-middle">
+                                        <button type="button" class="btn-info btn  btn-sm">编辑</button>
+                                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
