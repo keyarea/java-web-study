@@ -1,18 +1,16 @@
 package net.fangcun.dao.impl;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import net.fangcun.dao.IUserDao;
 import net.fangcun.domain.User;
 import net.fangcun.util.JdbcUtils_C3P0;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UserImpl implements IUserDao {
+public class UserDaoImpl implements IUserDao {
 
-    private static UserImpl instance;
+    private static UserDaoImpl instance;
 
     @Override
     public User[] findPartUsers(int skip, int limit){
@@ -26,7 +24,7 @@ public class UserImpl implements IUserDao {
             connection = JdbcUtils_C3P0.getConnection();
 
             // 要执行的sql语句
-            String sql = "SELECT id,name,nickname FROM user LIMIT " + skip + "," + limit;
+            String sql = "SELECT id,name,nickname,password FROM user LIMIT " + skip + "," + limit;
 
             //通过conn对象获取负责执行SQL命令的Statement对象
             statement = connection.createStatement();
@@ -161,10 +159,10 @@ public class UserImpl implements IUserDao {
         }
     }
 
-    public static final UserImpl getInstance(){
+    public static final UserDaoImpl getInstance(){
         if (instance == null) {
             try {
-                instance = new UserImpl();
+                instance = new UserDaoImpl();
             } catch (Exception e) {
                 e.printStackTrace();
             }

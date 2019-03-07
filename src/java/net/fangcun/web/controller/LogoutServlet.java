@@ -1,6 +1,9 @@
 package net.fangcun.web.controller;
 
 
+import net.fangcun.service.IUserService;
+import net.fangcun.service.impl.UserServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +24,14 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        // 得到session
         HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.setStatus(200);
+
+        // 注销服务
+        if(UserServiceImpl.getInstance().logoutUser(session)){
+            response.setStatus(200);
+        }else{
+            response.setStatus(500);
+        }
     }
 }

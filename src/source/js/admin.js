@@ -10,3 +10,14 @@ $("#logout-btn").click(function () {
         }
     });
 });
+
+function deleteUser(id){
+    console.log(id);
+};
+
+function editUser(id, name, nickname, password){
+    console.log(id, name, nickname, password);
+};
+
+window.deleteUser = deleteUser;
+window.editUser = editUser;

@@ -2,6 +2,8 @@ package net.fangcun.service;
 
 import net.fangcun.domain.User;
 
+import javax.servlet.http.HttpSession;
+
 public interface IUserService {
 
     /**
@@ -11,4 +13,12 @@ public interface IUserService {
      * @return
      */
     User loginUser(String name, String password);
+
+    /**
+     * 提供用户注销服务
+     * @param session
+     * @return
+     */
+    Boolean logoutUser(HttpSession session);
+
 }

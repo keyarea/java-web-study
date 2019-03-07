@@ -62,8 +62,8 @@
                                     <td class="align-middle">${user.name}</td>
                                     <td class="align-middle">${user.nickname}</td>
                                     <td class="align-middle">
-                                        <button type="button" class="btn-info btn  btn-sm">编辑</button>
-                                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                                        <button type="button" class="btn-info btn  btn-sm" onclick="editUser('${user.id}','${user.name}','${user.nickname}','${user.password}')">编辑</button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">删除</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -75,6 +75,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
