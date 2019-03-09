@@ -10,6 +10,12 @@ public class UserServiceImpl implements IUserService {
     private static UserServiceImpl instance;
 
     @Override
+    public User findUser(int id){
+        UserDaoImpl userDao = UserDaoImpl.getInstance();
+        return userDao.find(id);
+    }
+
+    @Override
     public User loginUser(String name, String password){
         UserDaoImpl userDaoImpl = UserDaoImpl.getInstance();
         return userDaoImpl.find(name, password);

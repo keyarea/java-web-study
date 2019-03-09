@@ -21,4 +21,9 @@ public interface IUserService {
      */
     Boolean logoutUser(HttpSession session);
 
+    /**
+     * 提供根据id查找用户的服务
+     */
+    User findUser(int id);
+
 }

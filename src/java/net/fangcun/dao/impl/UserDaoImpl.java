@@ -13,6 +13,41 @@ public class UserDaoImpl implements IUserDao {
     private static UserDaoImpl instance;
 
     @Override
+    public User find(int id){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "SELECT * FROM user WHERE id = " + id;
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            statement = connection.createStatement();
+            // 执行查找操作
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                user = new User();
+                // 设置用户id
+                user.setId(String.valueOf(resultSet.getInt("id")));
+                // 设置用户名
+                user.setName(resultSet.getString("name"));
+                // 设置昵称
+                user.setNickname(resultSet.getString("nickname"));
+                // 设置用户密码
+                user.setPassword(resultSet.getString("password"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, statement, resultSet);
+        }
+        return user;
+    }
+
+    @Override
     public User[] findPartUsers(int skip, int limit){
         Connection connection = null;
         Statement statement = null;
@@ -42,6 +77,8 @@ public class UserDaoImpl implements IUserDao {
                 user.setName(resultSet.getString("name"));
                 // 设置昵称
                 user.setNickname(resultSet.getString("nickname"));
+                // 设置密码
+                user.setPassword(resultSet.getString("password"));
 
                 users.add(user);
             }

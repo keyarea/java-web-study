@@ -15,9 +15,23 @@ function deleteUser(id){
     console.log(id);
 };
 
-function editUser(id, name, nickname, password){
-    console.log(id, name, nickname, password);
-};
+$("#editUserModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var userID = button.data('id'); // Extract info from data-* attributes
+    $.ajax("/admin/getUser",{
+        method: "post",
+        data: {id: userID},
+        success: function(data){
+            console.log(data);
+       },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    var modal = $(this);
+});
+
+
+
 
 window.deleteUser = deleteUser;
-window.editUser = editUser;

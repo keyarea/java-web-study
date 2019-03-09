@@ -19,6 +19,13 @@ public interface IUserDao {
     User find(String name);
 
     /**
+     * 根据主键id来查找用户
+     * @param id
+     * @return 查找到的用户
+     */
+    User find(int id);
+
+    /**
      * 添加用户
      * @param user
      */
