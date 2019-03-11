@@ -1,5 +1,6 @@
 package net.fangcun.service.impl;
 
+import net.fangcun.dao.IUserDao;
 import net.fangcun.dao.impl.UserDaoImpl;
 import net.fangcun.domain.User;
 import net.fangcun.service.IUserService;
@@ -32,6 +33,11 @@ public class UserServiceImpl implements IUserService {
             return flag;
         }
 
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        return UserDaoImpl.getInstance().delete(id);
     }
 
 

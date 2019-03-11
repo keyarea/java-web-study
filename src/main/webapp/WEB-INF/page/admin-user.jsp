@@ -63,7 +63,7 @@
                                     <td class="align-middle">${user.nickname}</td>
                                     <td class="align-middle">
                                         <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">删除</button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -81,7 +81,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">New message</h5>
+                <h5 class="modal-title" id="editUserModalLabel">用户管理</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,18 +89,46 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="user-name" class="col-form-label">用户名</label>
+                        <input type="text" class="form-control" id="user-name">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="nickname-text" class="col-form-label">用户昵称</label>
+                        <input type="text" class="form-control" id="nickname-text">
+                    </div>
+                    <div class="form-group">
+                        <label for="password-text" class="col-form-label">用户密码</label>
+                        <input type="password" class="form-control" id="password-text">
+                    </div>
+                    <div class="form-group">
+                        <label for="verify-password" class="col-form-label">重复用户密码</label>
+                        <input type="password" class="form-control" id="verify-password">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteUserModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">删除用户</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteUserModalBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteUser">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>

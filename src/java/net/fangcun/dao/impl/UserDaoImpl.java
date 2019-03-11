@@ -13,6 +13,34 @@ public class UserDaoImpl implements IUserDao {
     private static UserDaoImpl instance;
 
     @Override
+    public boolean delete(int id){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        boolean isOK = false;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "DELETE FROM user WHERE id = " + id;
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            statement = connection.createStatement();
+            // 执行查找操作
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                isOK = true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, statement, resultSet);
+        }
+        return isOK;
+    }
+
+    @Override
     public User find(int id){
         Connection connection = null;
         Statement statement = null;

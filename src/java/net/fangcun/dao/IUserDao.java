@@ -32,6 +32,13 @@ public interface IUserDao {
     void add(User user);
 
     /**
+     * 根据id删除用户
+     * @param id 用户id
+     * @return 删除成功返回true，删除失败返回false
+     */
+    boolean delete(int id);
+
+    /**
      * 得到条件限制的部分用户
      * @param skip 开始
      * @param limit 多少个
