@@ -1,5 +1,6 @@
 package net.fangcun.dao.impl;
 
+import net.fangcun.service.impl.UserServiceImpl;
 import org.junit.Test;
 import net.fangcun.domain.User;
 
@@ -29,5 +30,34 @@ public class UserDaoImplTest {
 
     @Test
     public void add() {
+    }
+
+    @Test
+    public void delete() {
+        UserServiceImpl.getInstance().deleteUser(1);
+    }
+
+    @Test
+    public void find2() {
+    }
+
+    @Test
+    public void findPartUsers1() {
+    }
+
+    @Test
+    public void find3() {
+    }
+
+    @Test
+    public void find4() {
+    }
+
+    @Test
+    public void add1() {
+    }
+
+    @Test
+    public void getInstance() {
     }
 }

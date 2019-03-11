@@ -44,10 +44,11 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
             method: "post",
             data: {id: userID},
             success: function (data) {
-                console.log(data);
+                $("#deleteUserModal").modal('hide');
+                alert("成功删除用户！");
             },
             error: function (error) {
-                alert(error);
+                alert(JSON.parse(error));
             }
         })
     });
