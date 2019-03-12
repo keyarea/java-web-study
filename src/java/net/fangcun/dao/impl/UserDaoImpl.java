@@ -191,18 +191,17 @@ public class UserDaoImpl implements IUserDao {
     }
 
 
-    // TODO 添加用户
+    // 添加用户
     @Override
     public void add(User user) {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         try{
-            user = new User();
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
-            String sql = "";
+            String sql = "INSET INTO user(name,nickname,password) VALUES()";
             //通过conn对象获取负责执行SQL命令的Statement对象
             statement = connection.createStatement();
             // 执行查找操作

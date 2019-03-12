@@ -16,6 +16,7 @@
 
 <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
+
 <div class="container mt-4">
     <div class="row justify-content-md-center">
         <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
@@ -41,7 +42,7 @@
                             </form>
                         </div>
                         <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block">添加用户</button>
+                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editUserModal">添加用户</button>
                         </div>
                     </div>
 
@@ -108,7 +109,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-success">保存</button>
+                <button type="button" class="btn btn-success" id="saveUser">保存</button>
             </div>
         </div>
     </div>
