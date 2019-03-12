@@ -24,24 +24,25 @@ public class DeleteUserByID extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        String pattern = "^\\d+$";
+        String userID = request.getParameter("id");
+
+        boolean access = Pattern.matches(pattern, userID);
+        if(!access){
+            response.sendError(400, "错误的请求参数");
+        }
         try{
-            String pattern = "^\\d+$";
-            String userID = request.getParameter("id");
-            boolean access = Pattern.matches(pattern, userID);
-            if(access){
-                int id = Integer.parseInt(userID);
-                boolean result = UserServiceImpl.getInstance().deleteUser(id);
-                if(result){
-                    response.setStatus(200);
-                }else{
-                    throw new Exception("删除用户失败！");
-                }
+            int id = Integer.parseInt(userID);
+            boolean result = UserServiceImpl.getInstance().deleteUser(id);
+
+            if(result){
+                response.setStatus(200);
             }else{
-                throw new Exception("请求参数错误！");
+                throw new Exception("删除用户失败！");
             }
         }catch (Exception e){
-            response.setContentType("application/json;charset=utf-8");
-            response.sendError(400,e.getMessage());
+            response.sendError(500,e.getMessage());
         }
+
     }
 }

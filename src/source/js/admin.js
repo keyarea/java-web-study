@@ -46,6 +46,7 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
             success: function (data) {
                 $("#deleteUserModal").modal('hide');
                 alert("成功删除用户！");
+                usersRefresh();
             },
             error: function (error) {
                 alert(JSON.parse(error));
@@ -53,4 +54,24 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
         })
     });
 });
+
+function usersRefresh(){
+    var skip = getQueryString("skip");
+    var limit = getQueryString("limit");
+    console.log(skip, limit);
+}
+
+/**
+ * 获取URL参数
+ * @param name 参数名
+ * @returns 参数值
+ */
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return null;
+}
+
+window.usersRefresh = usersRefresh;
 
