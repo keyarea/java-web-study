@@ -25,11 +25,13 @@ public interface IUserDao {
      */
     User find(int id);
 
+
     /**
      * 添加用户
      * @param user
+     * @return boolean 是否添加成功
      */
-    void add(User user);
+    boolean add(User user);
 
     /**
      * 根据id删除用户
@@ -37,6 +39,13 @@ public interface IUserDao {
      * @return 删除成功返回true，删除失败返回false
      */
     boolean delete(int id);
+
+    /**
+     * 改变用户的数据
+     * @param user
+     * @return 改变成功返回true, 失败返回false
+     */
+    boolean update(User user);
 
     /**
      * 得到条件限制的部分用户

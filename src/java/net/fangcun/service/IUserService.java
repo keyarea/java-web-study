@@ -29,9 +29,30 @@ public interface IUserService {
     User findUser(int id);
 
     /**
+     * 提供根据用户名来查找用户的服务
+     * @param name 用户名
+     * @return 返回一个用户类
+     */
+    User findUser(String name);
+
+    /**
      * 提供根据id删除用户的服务
      * @param id 用户id
      * @return boolean 成功删除返回true，失败返回false
      */
     boolean deleteUser(int id);
+
+    /**
+     * 添加用户服务
+     * @param user
+     * @return 是否成功添加
+     */
+    boolean addUser(User user);
+
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+    boolean updateUser(User user);
 }

@@ -17,6 +17,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User findUser(String name){
+        IUserDao userDao = UserDaoImpl.getInstance();
+        return userDao.find(name);
+    }
+
+    @Override
     public User loginUser(String name, String password){
         UserDaoImpl userDaoImpl = UserDaoImpl.getInstance();
         return userDaoImpl.find(name, password);
@@ -38,6 +44,18 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean deleteUser(int id) {
         return UserDaoImpl.getInstance().delete(id);
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        IUserDao userDao = UserDaoImpl.getInstance();
+        return userDao.add(user);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        IUserDao userDao = UserDaoImpl.getInstance();
+        return userDao.update(user);
     }
 
 

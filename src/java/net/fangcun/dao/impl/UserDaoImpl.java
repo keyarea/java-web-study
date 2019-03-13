@@ -164,7 +164,6 @@ public class UserDaoImpl implements IUserDao {
         ResultSet resultSet = null;
         User user = null;
         try{
-            user = new User();
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
@@ -174,6 +173,7 @@ public class UserDaoImpl implements IUserDao {
             // 执行查找操作
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
+                user = new User();
                 // 设置用户id
                 user.setId(String.valueOf(resultSet.getInt("id")));
                 // 设置用户名
@@ -193,33 +193,61 @@ public class UserDaoImpl implements IUserDao {
 
     // 添加用户
     @Override
-    public void add(User user) {
+    public boolean add(User user) {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        int i = 0;
         try{
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
-            String sql = "INSET INTO user(name,nickname,password) VALUES()";
+            String sql = "INSERT INTO user(name,nickname,password) VALUES(?,?,?)";
             //通过conn对象获取负责执行SQL命令的Statement对象
-            statement = connection.createStatement();
-            // 执行查找操作
-            resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
-                // 设置用户id
-                user.setId(String.valueOf(resultSet.getInt("id")));
-                // 设置用户名
-                user.setName(resultSet.getString("name"));
-                // 设置昵称
-                user.setNickname(resultSet.getString("nickname"));
-            }
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getNickname());
+            preparedStatement.setString(3, user.getPassword());
+
+            i = preparedStatement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             // 执行完成之后释放相关资源
-            JdbcUtils_C3P0.release(connection, statement, resultSet);
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
+        return i == 1;
+    }
+
+    // 升级用户
+    @Override
+    public boolean update(User user) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int i = 0;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "UPDATE user SET name = ?,nickname = ?,password = ? WHERE id = ?";
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getNickname());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getId());
+
+            i = preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return i == 1;
     }
 
     public static final UserDaoImpl getInstance(){

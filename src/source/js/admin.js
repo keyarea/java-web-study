@@ -20,7 +20,7 @@ $("#logout-btn").click(function () {
  */
 function addUser(name, nickname, password){
     console.log(name, nickname, password);
-    /*$.ajax("/admin/addUser", {
+    $.ajax("/admin/addUser", {
         method: "post",
         data: {
             "name": name,
@@ -28,12 +28,20 @@ function addUser(name, nickname, password){
             "password": password
         },
         success: function(data){
-            console.log(data);
+            if(data !== null && data.result !== null && data.message !== null){
+                if(data.result){
+                    alert(data.message);
+                    window.location.reload();
+                }else{
+                    alert(data.message);
+                }
+
+            }
         },
         erroe: function (error) {
-            console.log(error);
+            alert(JSON.stringify(error));
         }
-    })*/
+    })
 }
 
 /**
@@ -42,7 +50,7 @@ function addUser(name, nickname, password){
  */
 function updateUser(id, name, nickname, password){
     console.log(id, name, nickname, password);
-    /*$.ajax("/admin/updateUser", {
+    $.ajax("/admin/updateUser", {
         method: "post",
         data: {
             "id": id,
@@ -51,12 +59,19 @@ function updateUser(id, name, nickname, password){
             "password": password
         },
         success: function(data){
-            console.log(data);
+            if(data !== null && data.result !== null){
+                if(data.result){
+                    alert("用户更新成功");
+                    window.location.reload();
+                }else{
+                    alert("用户更新失败");
+                }
+            }
         },
         erroe: function (error) {
             console.log(error);
         }
-    })*/
+    })
 }
 
 
@@ -104,7 +119,6 @@ $("#editUserModal").on("show.bs.modal", function (event) {
     if(userID === ""){
         return;
     }
-    var modal = $(this);
     $.ajax("/admin/getUser",{
         method: "post",
         data: {id: userID},
@@ -127,10 +141,12 @@ $("#editUserModal").on("show.bs.modal", function (event) {
  */
 $("#editUserModal").on("hidden.bs.modal", function(e){
     var modal = $(this);
+    // 重置输入的数据为空
     modal.find("#user-name").val("");
     modal.find("#nickname-text").val("");
     modal.find("#password-text").val("");
     modal.find("#verify-password").val("");
+    // 取消绑定点击事件，防止绑定多个点击事件
     $("#saveUser").unbind("click");
 });
 
