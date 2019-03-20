@@ -57,17 +57,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="user" items="${users}" >
-                                <tr>
-                                    <th scope="row" class="align-middle">${user.id}</th>
-                                    <td class="align-middle">${user.name}</td>
-                                    <td class="align-middle">${user.nickname}</td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <c:choose>
+                                <c:when test="${empty users}">
+                                    <tr>
+                                        <td colspan="4" class="text-center">暂无数据</td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="user" items="${users}" >
+                                        <tr>
+                                            <th scope="row" class="align-middle">${user.id}</th>
+                                            <td class="align-middle">${user.name}</td>
+                                            <td class="align-middle">${user.nickname}</td>
+                                            <td class="align-middle">
+                                                <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </tbody>
                         </table>
                     </div>

@@ -68,7 +68,7 @@ function updateUser(id, name, nickname, password){
                 }
             }
         },
-        erroe: function (error) {
+        error: function (error) {
             console.log(error);
         }
     })

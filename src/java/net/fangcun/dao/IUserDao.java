@@ -3,6 +3,13 @@ package net.fangcun.dao;
 import net.fangcun.domain.User;
 
 public interface IUserDao {
+
+    /**
+     * 得到所有的用户
+     * @return 所有的用户
+     */
+    User[] find();
+
     /**
      * 根据用户名密码来查找用户
      * @param name

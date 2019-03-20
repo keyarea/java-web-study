@@ -7,15 +7,16 @@ public class Category implements Serializable {
     private String id;
     // 类名称
     private String name;
-    // 类下的文章
-    private Article article;
 
-    public Article getArticle() {
-        return article;
+    // 类下的文章
+    private Article[] articles;
+
+    public Article[] getArticles() {
+        return articles;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticles(Article[] articles) {
+        this.articles = articles;
     }
 
     public String getId() {

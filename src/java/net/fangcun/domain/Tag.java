@@ -15,14 +15,14 @@ public class Tag implements Serializable {
     // 标签名
     private String name;
     // 标签下的文章
-    private Article article;
+    private Article[] articles;
 
-    public Article getArticle() {
-        return article;
+    public Article[] getArticles() {
+        return articles;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticles(Article[] articles) {
+        this.articles = articles;
     }
 
     public String getId() {
