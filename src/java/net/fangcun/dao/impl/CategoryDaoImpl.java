@@ -35,7 +35,7 @@ public class CategoryDaoImpl implements ICategoryDao {
             connection = JdbcUtils_C3P0.getConnection();
 
             // 要执行的sql语句
-            String sql = "SELECT id,name,nickname,password FROM user";
+            String sql = "";
 
             //通过conn对象获取负责执行SQL命令的Statement对象
             statement = connection.createStatement();
