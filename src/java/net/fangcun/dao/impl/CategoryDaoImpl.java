@@ -1,10 +1,13 @@
 package net.fangcun.dao.impl;
 
+import net.fangcun.dao.IArticleDao;
 import net.fangcun.dao.ICategoryDao;
+import net.fangcun.domain.Article;
 import net.fangcun.domain.Category;
 import net.fangcun.util.JdbcUtils_C3P0;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ public class CategoryDaoImpl implements ICategoryDao {
     }
 
     @Override
-    public Category find(){
+    public Category[] find(){
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -35,7 +38,7 @@ public class CategoryDaoImpl implements ICategoryDao {
             connection = JdbcUtils_C3P0.getConnection();
 
             // 要执行的sql语句
-            String sql = "SELECT id,name,nickname,password FROM user";
+            String sql = "SELECT * FROM category";
 
             //通过conn对象获取负责执行SQL命令的Statement对象
             statement = connection.createStatement();
@@ -45,18 +48,18 @@ public class CategoryDaoImpl implements ICategoryDao {
 
 
             while(resultSet.next()){
-                User user = new User();
+                Category category = new Category();
 
-                // 设置用户id
-                user.setId(String.valueOf(resultSet.getInt("id")));
-                // 设置用户名
-                user.setName(resultSet.getString("name"));
-                // 设置昵称
-                user.setNickname(resultSet.getString("nickname"));
-                // 设置密码
-                user.setPassword(resultSet.getString("password"));
-
-                users.add(user);
+                // 设置类别id
+                category.setId(String.valueOf(resultSet.getInt("id")));
+                // 设置类别标题
+                category.setName(resultSet.getString("name"));
+                // 设置类别下文章
+                IArticleDao articleDao = ArticleDaoImpl.getInstance();
+                Article[] articles = articleDao.find(category);
+                category.setArticles(articles);
+                // 添加到类别数组
+                categories.add(category);
             }
 
 
@@ -68,7 +71,30 @@ public class CategoryDaoImpl implements ICategoryDao {
         }
 
         // 将ArrayList转为普通数组
-        User[] userList = users.toArray(new User[users.size()]);
-        return userList;
+        return categories.toArray(new Category[categories.size()]);
+    }
+
+    public boolean delete(int id){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOK = false;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "DELETE FROM category WHERE id = " + id;
+            //通过conn对象获取负责执行SQL命令的PreparedStatement对象
+            preparedStatement = connection.prepareStatement(sql);
+            // 执行查找操作
+            int result = preparedStatement.executeUpdate();
+            isOK = result == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOK;
     }
 }

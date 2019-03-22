@@ -36,7 +36,7 @@
                             <form class="form-inline">
                                 <div class="form-group mb-2">
                                     <label for="keyword" class="sr-only">关键词</label>
-                                    <input type="password" class="form-control" id="keyword" placeholder="关键词">
+                                    <input type="text" class="form-control" id="keyword" placeholder="关键词">
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
                             </form>
@@ -86,7 +86,7 @@
     </div>
 </div>
 
-
+<%--编辑用户模态框--%>
 <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -124,6 +124,7 @@
     </div>
 </div>
 
+<%--删除用户模态框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteUserModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

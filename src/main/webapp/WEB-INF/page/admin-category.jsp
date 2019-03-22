@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
@@ -36,7 +37,7 @@
                             <form class="form-inline">
                                 <div class="form-group mb-2">
                                     <label for="keyword" class="sr-only">关键词</label>
-                                    <input type="password" class="form-control" id="keyword" placeholder="关键词">
+                                    <input type="text" class="form-control" id="keyword" placeholder="关键词">
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
                             </form>
@@ -68,10 +69,10 @@
                                         <tr>
                                             <th class="align-middle">${category.id}</th>
                                             <td class="align-middle">${category.name}</td>
-                                            <td class="align-middle">${category.article}</td>
+                                            <td class="align-middle">${fn:length(category.articles)}</td>
                                             <td class="align-middle">
                                                 <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteCategoryModal">删除</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -84,6 +85,27 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+</div>
+
+<%--删除分类模态框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteCategoryModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">删除分类</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteCategoryModalBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteCategory">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
         </div>
     </div>
 </div>

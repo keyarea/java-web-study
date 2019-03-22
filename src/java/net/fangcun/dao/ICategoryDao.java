@@ -4,7 +4,19 @@ import net.fangcun.domain.Category;
 
 public interface ICategoryDao{
 
-    Category find();
+    /**
+     * 找到所有分类
+     * @return
+     */
+    Category[] find();
+
+    /**
+     * 根据id删除分类
+     * @param id
+     * @return
+     */
+    boolean delete(int id);
+
 
 }
 

@@ -175,5 +175,29 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
 });
 
 
+/**
+ * 删除用户的确认莫泰框，模态框显现的时候所触发的事件
+ */
+$("#deleteCategoryModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var categoryID = button.data("id");
+    var modal = $(this);
+    modal.find("#deleteCategoryModalBody").text("您是否删除id为" + categoryID + "的分类？")
+    $("#deleteCategory").click(function (e) {
+        $.ajax("/admin/deleteCategory",{
+            method: "post",
+            data: {id: categoryID},
+            success: function (data) {
+                $("#deleteUserModal").modal('hide');
+                alert("成功删除分类！");
+                window.location.reload();
+            },
+            error: function (error) {
+                alert(JSON.parse(error));
+            }
+        })
+    });
+});
+
 
 
