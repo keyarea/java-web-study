@@ -58,6 +58,12 @@ public class UserServiceImpl implements IUserService {
         return userDao.update(user);
     }
 
+    @Override
+    public User[] findAllUsers() {
+        IUserDao userDao = UserDaoImpl.getInstance();
+        return userDao.find();
+    }
+
 
 
     public static final UserServiceImpl getInstance(){

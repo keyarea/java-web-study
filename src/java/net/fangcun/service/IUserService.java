@@ -55,4 +55,10 @@ public interface IUserService {
      * @return
      */
     boolean updateUser(User user);
+
+    /**
+     * 查找全部用户
+     * @return
+     */
+    User[] findAllUsers();
 }
