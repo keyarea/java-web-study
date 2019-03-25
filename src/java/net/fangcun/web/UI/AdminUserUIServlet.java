@@ -22,6 +22,8 @@ public class AdminUserUIServlet extends HttpServlet {
             IUserService userService = UserServiceImpl.getInstance();
             // 调用用户服务方法，查找全部用户
             User[] users = userService.findAllUsers();
+            // 给用户上添加文章
+            users = userService.addArticles(users);
             // 将得到的全部用户设置于请求上
             request.setAttribute("users", users);
             // 调用jsp

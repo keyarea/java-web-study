@@ -18,5 +18,19 @@ public interface ICategoryService{
      * @return
      */
     boolean delete(int id);
+
+    /**
+     * 为分类添加文章
+     * @param category
+     * @return 添加了分类下文章的分类
+     */
+    Category addArticles(Category category);
+
+    /**
+     * 为分类数组添加分类
+     * @param categories
+     * @return
+     */
+    Category[] addArticles(Category[] categories);
 }
 

@@ -61,4 +61,17 @@ public interface IUserService {
      * @return
      */
     User[] findAllUsers();
+
+    /**
+     * 为用户添加用户所写的文章
+     * @return
+     */
+    User addArticles(User user);
+
+    /**
+     * 为多位用户添加他所写的文章
+     * @param users
+     * @return
+     */
+    User[] addArticles(User[] users);
 }

@@ -56,9 +56,6 @@ public class CategoryDaoImpl implements ICategoryDao {
                 category.setName(resultSet.getString("name"));
                 // 设置类别下文章
                 IArticleDao articleDao = ArticleDaoImpl.getInstance();
-                Article[] articles = articleDao.find(category);
-                category.setArticles(articles);
-                // 添加到类别数组
                 categories.add(category);
             }
 

@@ -1,7 +1,10 @@
 package net.fangcun.service.impl;
 
+import net.fangcun.dao.IArticleDao;
 import net.fangcun.dao.IUserDao;
+import net.fangcun.dao.impl.ArticleDaoImpl;
 import net.fangcun.dao.impl.UserDaoImpl;
+import net.fangcun.domain.Article;
 import net.fangcun.domain.User;
 import net.fangcun.service.IUserService;
 
@@ -62,6 +65,22 @@ public class UserServiceImpl implements IUserService {
     public User[] findAllUsers() {
         IUserDao userDao = UserDaoImpl.getInstance();
         return userDao.find();
+    }
+
+    @Override
+    public User addArticles(User user){
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        Article[] articles = articleDao.find(user);
+        user.setArticles(articles);
+        return user;
+    }
+
+    @Override
+    public User[] addArticles(User[] users){
+        for(int i = 0,l = users.length;i < l;i++){
+            users[i] = addArticles(users[i]);
+        }
+        return users;
     }
 
 

@@ -18,8 +18,13 @@ public class AdminCategoryUIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        // 得到分类操作的实例
         ICategoryService categoryService = CategoryServiceImpl.getInstance();
+        // 得到所有的分类
         Category[] categories = categoryService.find();
+        // 为分类数组添加分类下文章
+        categories = categoryService.addArticles(categories);
+        // 给请求添加属性
         request.setAttribute("categories", categories);
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/admin-category.jsp");
         view.forward(request, response);
