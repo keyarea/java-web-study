@@ -34,9 +34,9 @@ CREATE TABLE article
   `recommend`  TINYINT(1) DEFAULT 0 COMMENT '是否推荐',
   PRIMARY KEY (`id`),
   KEY          `author` (`author`),
-  CONSTRAINT `article_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
+  CONSTRAINT `article_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   KEY          `category` (`category`),
-  CONSTRAINT `article_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`)
+  CONSTRAINT `article_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -47,13 +47,22 @@ CREATE TABLE comment(
   `contact` VARCHAR(50) NULL COMMENT '联系方式',
   `content` TEXT NOT NULL COMMENT '评论内容',
   PRIMARY KEY(`id`),
-  FOREIGN KEY (`article`) REFERENCES `article` (`id`)
+  FOREIGN KEY (`article`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE article_tag (
   `article` INT(10) UNSIGNED NOT NULL COMMENT '外键-文章',
   `tag` INT(10) UNSIGNED NOT NULL COMMENT '外键-标签',
   PRIMARY KEY (`article`, `tag`),
-  FOREIGN KEY (`article`) REFERENCES `article` (`id`),
-  FOREIGN KEY (`tag`) REFERENCES `tag` (`id`)
+  FOREIGN KEY (`article`) REFERENCES `article` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  FOREIGN KEY (`tag`) REFERENCES `tag` (`id`) ON DELETE SET NULL ON UPDATE  NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO user(name, nickname, password) VALUES('k','k','123');
+
+INSERT INTO category(name) VALUES('java');
+
+INSERT INTO tag(name) VALUES('jdbc');
+
+INSERT INTO tag(name) VALUES('mysql');
+
