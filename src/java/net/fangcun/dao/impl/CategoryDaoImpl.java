@@ -94,4 +94,29 @@ public class CategoryDaoImpl implements ICategoryDao {
         }
         return isOK;
     }
+
+    public boolean add(Category category){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int i = 0;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "INSERT INTO category(name) VALUES(?)";
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, category.getName());
+
+            i = preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return i > 0;
+    }
 }

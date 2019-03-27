@@ -43,7 +43,7 @@
                             </form>
                         </div>
                         <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editUserModal">添加分类</button>
+                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editCategoryModal">添加分类</button>
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@
                                             <td class="align-middle">${category.name}</td>
                                             <td class="align-middle">${fn:length(category.articles)}</td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
+                                                <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editCategoryModal">编辑</button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteCategoryModal">删除</button>
                                             </td>
                                         </tr>
@@ -110,7 +110,32 @@
     </div>
 </div>
 
+<%--添加编辑分类模态框--%>
 
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">分类管理</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="category-name" class="col-form-label">分类标题</label>
+                        <input type="text" class="form-control" id="category-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success" id="saveCategory">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
 </body>

@@ -24,17 +24,15 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{
-        String name = request.getParameter("name");
         String nickname = request.getParameter("nickname");
         String id = request.getParameter("id");
         String password = request.getParameter("password");
 
-        if(name == null && nickname == null && id == null && password == null){
+        if(nickname == null && id == null && password == null){
             response.sendError(400, "错误的请求");
         }
 
         User user = new User();
-        user.setName(name);
         user.setId(id);
         user.setNickname(nickname);
         user.setPassword(password);

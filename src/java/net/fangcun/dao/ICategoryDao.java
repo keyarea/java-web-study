@@ -18,5 +18,13 @@ public interface ICategoryDao{
     boolean delete(int id);
 
 
+    /**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    boolean add(Category category);
+
+
 }
 

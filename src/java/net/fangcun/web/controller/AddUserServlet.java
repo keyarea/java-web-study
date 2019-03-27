@@ -29,7 +29,13 @@ public class AddUserServlet extends HttpServlet {
         String nickname = request.getParameter("nickname");
         String password = request.getParameter("password");
 
-        if(name == null || nickname ==null || password == null){
+        if(name == null ||
+                nickname ==null ||
+                password == null ||
+                name.trim().equals("") ||
+                nickname.trim().equals("") ||
+                password.trim().equals("")
+        ){
             response.sendError(400, "错误的请求");
         }
 

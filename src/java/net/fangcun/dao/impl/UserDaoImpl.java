@@ -267,7 +267,7 @@ public class UserDaoImpl implements IUserDao {
             // 执行完成之后释放相关资源
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
-        return i == 1;
+        return i > 0;
     }
 
     // 升级用户
@@ -281,14 +281,13 @@ public class UserDaoImpl implements IUserDao {
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
-            String sql = "UPDATE user SET name = ?,nickname = ?,password = ? WHERE id = ?";
+            String sql = "UPDATE user SET nickname = ?,password = ? WHERE id = ?";
             //通过conn对象获取负责执行SQL命令的Statement对象
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getNickname());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getId());
+            preparedStatement.setString(1, user.getNickname());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getId());
 
             i = preparedStatement.executeUpdate();
         }catch (Exception e){
@@ -297,7 +296,7 @@ public class UserDaoImpl implements IUserDao {
             // 执行完成之后释放相关资源
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
-        return i == 1;
+        return i > 0;
     }
 
     public static final UserDaoImpl getInstance(){

@@ -32,5 +32,12 @@ public interface ICategoryService{
      * @return
      */
     Category[] addArticles(Category[] categories);
+
+    /**
+     * 添加一个分类
+     * @param category
+     * @return
+     */
+    boolean addCategory(Category category);
 }
 

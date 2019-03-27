@@ -48,17 +48,17 @@ function addUser(name, nickname, password){
  * 修改一个用户
  * @param id 用户的id
  */
-function updateUser(id, name, nickname, password){
-    console.log(id, name, nickname, password);
+function updateUser(id, nickname, password){
+    console.log(id, nickname, password);
     $.ajax("/admin/updateUser", {
         method: "post",
         data: {
             "id": id,
-            "name": name,
             "nickname": nickname,
             "password": password
         },
         success: function(data){
+            console.log(data);
             if(data !== null && data.result !== null){
                 if(data.result){
                     alert("用户更新成功");
@@ -84,14 +84,10 @@ $("#editUserModal").on("show.bs.modal", function (event) {
     var modal = $(this);
     // 添加保存事件
     $("#saveUser").click(function () {
+        var name = modal.find("#user-name").val();
         var password = modal.find("#password-text").val();
         var verifyPassword = modal.find("#verify-password").val();
-        var name = modal.find("#user-name").val();
         var nickname = modal.find("#nickname-text").val();
-        if(name === ""){
-            alert("用户名不能为空！");
-            return;
-        }
         if(nickname === ""){
             alert("昵称不能为空！");
             return;
@@ -110,20 +106,25 @@ $("#editUserModal").on("show.bs.modal", function (event) {
         }
 
        if(userID === ""){ // userID为空代表为添加用户
+           if(name === ""){
+               alert("用户名不能为空");
+               return;
+           }
            addUser(name, nickname, password);
        }else{ // userID有则表示为修改用户
-           updateUser(userID, name, nickname, password);
+           updateUser(userID, nickname, password);
        }
     });
 
     if(userID === ""){
         return;
     }
+    modal.find("#user-name").attr('disabled',true);
     $.ajax("/admin/getUser",{
         method: "post",
         data: {id: userID},
         success: function(data){
-            modal.find("#user-name").val(data.name);
+            modal.find('#user-name').val(data.name);
             modal.find("#nickname-text").val(data.nickname);
             modal.find("#password-text").val(data.password);
             modal.find("#verify-password").val(data.password);
@@ -142,7 +143,6 @@ $("#editUserModal").on("show.bs.modal", function (event) {
 $("#editUserModal").on("hidden.bs.modal", function(e){
     var modal = $(this);
     // 重置输入的数据为空
-    modal.find("#user-name").val("");
     modal.find("#nickname-text").val("");
     modal.find("#password-text").val("");
     modal.find("#verify-password").val("");
@@ -176,7 +176,7 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
 
 
 /**
- * 删除用户的确认莫泰框，模态框显现的时候所触发的事件
+ * 删除分类的确认莫泰框，模态框显现的时候所触发的事件
  */
 $("#deleteCategoryModal").on("show.bs.modal", function (event) {
     var button = $(event.relatedTarget);
@@ -198,6 +198,108 @@ $("#deleteCategoryModal").on("show.bs.modal", function (event) {
         })
     });
 });
+
+/**
+ * 管理分类
+ */
+$("#editCategoryModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var categoryID = button.data("id");
+    var modal = $(this);
+
+    // 添加保存事件
+    $("saveCategory").click(function() {
+        var title = modal.find("#category-name").val();
+        if(categoryID === ""){
+            addCategory(title);
+        }else{
+            updateCategory(categoryID, title);
+        }
+    });
+
+    if(categoryID === ""){
+        return;
+    }
+
+    $.ajax("/admin/getCategory", {
+        method: 'POST',
+        data: {
+            id: categoryID
+        },
+        success: function (result) {
+            model.find("#category-name").val(result.name);
+        },
+        error: function(error) {
+            alert(error);
+        }
+    })
+});
+
+/**
+ * 管理用户模态框消失时，该做的事情
+ */
+$("#editCategoryModal").on("hidden.bs.modal", function(){
+    var modal = $(this);
+    // 重置输入框中的数据
+    modal.find("#category-name").val();
+    // 解绑绑定的点击事件
+    $("$saveCategory").unbind('click');
+});
+
+/**
+ * 修改一个用户
+ * @param id
+ * @param title
+ */
+function updateCategory(id, title){
+    $.ajax("/admin/updateCategory", {
+        method: "POST",
+        data: {
+            id: id,
+            name: title
+        },
+        success: function(result){
+            if(result){
+                alert("更新分类成功");
+                window.location.reload();
+            }else{
+                alert("更新分类失败");
+                window.location.reload();
+            }
+        },
+        error: function(error){
+            alert(error);
+            window.location.reload();
+        }
+
+    })
+}
+
+/**
+ * 添加一个用户
+ * @param title
+ */
+function addCategory(title){
+    $.ajax("/admin/addCategory",{
+        method: "POST",
+        data: {
+            name: title
+        },
+        success: function(result){
+            if(result){
+                alert("添加分类成功");
+                window.location.reload();
+            }else{
+                alert("添加分类失败");
+                window.location.reload();
+            }
+        },
+        error: function() {
+            alert(error);
+            window.location.reload();
+        }
+    })
+}
 
 
 
