@@ -27,6 +27,37 @@ public class CategoryDaoImpl implements ICategoryDao {
     }
 
     @Override
+    public Category find(int id) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Category category = null;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "SELECT * FROM category WHERE id = " + id;
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            statement = connection.createStatement();
+            // 执行查找操作
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                category = new Category();
+                // 设置分类id
+                category.setId(String.valueOf(resultSet.getInt("id")));
+                // 设置分类名
+                category.setName(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, statement, resultSet);
+        }
+        return category;
+    }
+
+    @Override
     public Category[] find(){
         Connection connection = null;
         Statement statement = null;

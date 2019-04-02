@@ -142,7 +142,11 @@ $("#editUserModal").on("show.bs.modal", function (event) {
  */
 $("#editUserModal").on("hidden.bs.modal", function(e){
     var modal = $(this);
+
+    // 重置用户名的属性
+    modal.find("#user-name").attr("disabled", false);
     // 重置输入的数据为空
+    modal.find("#user-name").val("");
     modal.find("#nickname-text").val("");
     modal.find("#password-text").val("");
     modal.find("#verify-password").val("");
@@ -208,7 +212,7 @@ $("#editCategoryModal").on("show.bs.modal", function (event) {
     var modal = $(this);
 
     // 添加保存事件
-    $("saveCategory").click(function() {
+    $("#saveCategory").click(function() {
         var title = modal.find("#category-name").val();
         if(categoryID === ""){
             addCategory(title);
@@ -227,7 +231,7 @@ $("#editCategoryModal").on("show.bs.modal", function (event) {
             id: categoryID
         },
         success: function (result) {
-            model.find("#category-name").val(result.name);
+            modal.find("#category-name").val(result.name);
         },
         error: function(error) {
             alert(error);
@@ -241,9 +245,9 @@ $("#editCategoryModal").on("show.bs.modal", function (event) {
 $("#editCategoryModal").on("hidden.bs.modal", function(){
     var modal = $(this);
     // 重置输入框中的数据
-    modal.find("#category-name").val();
+    modal.find("#category-name").val("");
     // 解绑绑定的点击事件
-    $("$saveCategory").unbind('click');
+    $("#saveCategory").unbind('click');
 });
 
 /**

@@ -11,6 +11,13 @@ public interface ICategoryDao{
     Category[] find();
 
     /**
+     * 根据id找到对应的分类
+     * @param id
+     * @return
+     */
+    Category find(int id);
+
+    /**
      * 根据id删除分类
      * @param id
      * @return

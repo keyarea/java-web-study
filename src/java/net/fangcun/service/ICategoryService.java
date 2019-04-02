@@ -13,6 +13,13 @@ public interface ICategoryService{
     Category[] find();
 
     /**
+     * 从数据库中找出这个分类
+     * @param id
+     * @return
+     */
+    Category find(int id);
+
+    /**
      * 删除类别
      * @param id
      * @return

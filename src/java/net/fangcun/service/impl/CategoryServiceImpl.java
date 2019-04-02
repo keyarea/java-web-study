@@ -23,6 +23,12 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
+    public Category find(int id){
+        ICategoryDao categoryDao = CategoryDaoImpl.getInstance();
+        return categoryDao.find(id);
+    }
+
+    @Override
     public boolean addCategory(Category category){
         ICategoryDao categoryDao = CategoryDaoImpl.getInstance();
         return categoryDao.add(category);
