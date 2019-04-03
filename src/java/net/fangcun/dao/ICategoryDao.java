@@ -32,6 +32,13 @@ public interface ICategoryDao{
      */
     boolean add(Category category);
 
+    /**
+     * 更新数据库中的分类
+     * @param category
+     * @return
+     */
+    boolean update(Category category);
+
 
 }
 

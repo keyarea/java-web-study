@@ -2,6 +2,7 @@ package net.fangcun.dao;
 
 import net.fangcun.domain.Article;
 import net.fangcun.domain.Category;
+import net.fangcun.domain.Tag;
 import net.fangcun.domain.User;
 
 public interface IArticleDao   {
@@ -19,6 +20,14 @@ public interface IArticleDao   {
      * @return
      */
     Article[] find(User user);
+
+
+    /**
+     * 得到某个标签的分类
+     * @param tag
+     * @return
+     */
+    Article[] find(Tag tag);
 
 }
 

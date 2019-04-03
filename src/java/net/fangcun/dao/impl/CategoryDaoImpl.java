@@ -85,8 +85,6 @@ public class CategoryDaoImpl implements ICategoryDao {
                 category.setId(String.valueOf(resultSet.getInt("id")));
                 // 设置类别标题
                 category.setName(resultSet.getString("name"));
-                // 设置类别下文章
-                IArticleDao articleDao = ArticleDaoImpl.getInstance();
                 categories.add(category);
             }
 
@@ -140,6 +138,32 @@ public class CategoryDaoImpl implements ICategoryDao {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, category.getName());
+
+            i = preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // 执行完成之后释放相关资源
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return i > 0;
+    }
+
+    @Override
+    public boolean update(Category category){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int i = 0;
+        try{
+            // 获取一个数据库连接
+            connection = JdbcUtils_C3P0.getConnection();
+            // 要执行的sql语句
+            String sql = "UPDATE category SET name = ? WHERE id = ?";
+            //通过conn对象获取负责执行SQL命令的Statement对象
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, category.getName());
+            preparedStatement.setString(2, category.getId());
 
             i = preparedStatement.executeUpdate();
         }catch (Exception e){

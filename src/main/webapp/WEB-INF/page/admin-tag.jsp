@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
@@ -68,10 +69,10 @@
                                         <tr>
                                             <th scope="row" class="align-middle">${tag.id}</th>
                                             <td class="align-middle">${tag.name}</td>
-                                            <td class="align-middle">${tag.article}</td>
+                                            <td class="align-middle">${fn:length(tag.articles)}</td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
+                                                <button type="button" class="btn-info btn  btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#editTagModal">编辑</button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#deleteTagModal">删除</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -81,6 +82,54 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--删除分类模态框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteTagModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">删除标签</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteTagModalBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteTag">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--添加编辑分类模态框--%>
+
+<div class="modal fade" id="editTagModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTagModalLabel">分类管理</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="category-name" class="col-form-label">分类标题</label>
+                        <input type="text" class="form-control" id="category-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success" id="saveTag">保存</button>
             </div>
         </div>
     </div>

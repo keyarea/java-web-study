@@ -46,5 +46,12 @@ public interface ICategoryService{
      * @return
      */
     boolean addCategory(Category category);
+
+    /**
+     * 更新分类
+     * @param category
+     * @return
+     */
+    boolean updateCategory(Category category);
 }
 

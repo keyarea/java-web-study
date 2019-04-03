@@ -61,4 +61,10 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return categories;
     }
+
+    @Override
+    public boolean updateCategory(Category category){
+        ICategoryDao categoryDao = CategoryDaoImpl.getInstance();
+        return categoryDao.update(category);
+    }
 }
