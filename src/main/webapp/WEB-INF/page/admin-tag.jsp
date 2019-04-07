@@ -43,7 +43,7 @@
                             </form>
                         </div>
                         <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editUserModal">添加标签</button>
+                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editTagModal">添加标签</button>
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@
     </div>
 </div>
 
-<%--删除分类模态框--%>
+<%--删除标签模态框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteTagModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -108,7 +108,7 @@
     </div>
 </div>
 
-<%--添加编辑分类模态框--%>
+<%--添加编辑标签模态框--%>
 
 <div class="modal fade" id="editTagModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -122,8 +122,8 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="category-name" class="col-form-label">分类标题</label>
-                        <input type="text" class="form-control" id="category-name">
+                        <label for="tag-name" class="col-form-label">分类标题</label>
+                        <input type="text" class="form-control" id="tag-name">
                     </div>
                 </form>
             </div>

@@ -306,4 +306,127 @@ function addCategory(title){
 }
 
 
+/**
+ * 删除标签的确认莫泰框，模态框显现的时候所触发的事件
+ */
+$("#deleteTagModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var tagID = button.data("id");
+    var modal = $(this);
+    modal.find("#deleteTagModalBody").text("您是否删除id为" + tagID + "的标签？");
+    $("#deleteTag").click(function (e) {
+        $.ajax("/admin/deleteTag",{
+            method: "post",
+            data: {id: tagID},
+            success: function (data) {
+                $("#deleteTagModal").modal('hide');
+                alert("成功删除标签！");
+                window.location.reload();
+            },
+            error: function (error) {
+                alert(JSON.parse(error));
+            }
+        })
+    });
+});
+
+$("#deleteTagModal").on("hidden.bs.modal", function (event) {
+    $("#deleteTag").unbind("click");
+});
+
+
+/**
+ * 管理标签
+ */
+$("#editTagModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var tagID = button.data("id");
+    var modal = $(this);
+
+    // 添加保存事件
+    $("#saveTag").click(function() {
+        var title = modal.find("#tag-name").val();
+        if(tagID === ""){
+            addTag(title);
+        }else{
+            updateTag(tagID, title);
+        }
+    });
+
+    if(tagID === ""){
+        return;
+    }
+
+    $.ajax("/admin/getTag", {
+        method: 'POST',
+        data: {
+            id: tagID
+        },
+        success: function (result) {
+            modal.find("#tag-name").val(result.name);
+        },
+        error: function(error) {
+            alert(error);
+        }
+    })
+});
+
+/**
+ * 管理用户模态框消失时，该做的事情
+ */
+$("#editTagModal").on("hidden.bs.modal", function(){
+    var modal = $(this);
+    // 重置输入框中的数据
+    modal.find("#tag-name").val("");
+    // 解绑绑定的点击事件
+    $("#saveTag").unbind('click');
+});
+
+function addTag(title) {
+    $.ajax("/admin/addTag",{
+        method: "POST",
+        data: {
+            name: title
+        },
+        success: function(result){
+            if(result.result){
+                alert(result.message);
+                window.location.reload();
+            }else{
+                alert(result.message);
+                window.location.reload();
+            }
+        },
+        error: function() {
+            alert(error);
+            window.location.reload();
+        }
+    })
+}
+
+function updateTag(tagID, title) {
+    $.ajax("/admin/updateTag", {
+        method: "POST",
+        data: {
+            id: tagID,
+            name: title
+        },
+        success: function(result){
+            if(result.result){
+                alert(result.message);
+                window.location.reload();
+            }else{
+                alert(result.message);
+                window.location.reload();
+            }
+        },
+        error: function(error){
+            alert(error);
+            window.location.reload();
+        }
+
+    })
+
+
+}
 

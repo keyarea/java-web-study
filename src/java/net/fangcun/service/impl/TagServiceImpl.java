@@ -43,4 +43,28 @@ public class TagServiceImpl implements ITagService {
         ITagDao tagDao = TagDaoImpl.getInstance();
         return tagDao.find();
     }
+
+    @Override
+    public Tag find(int id){
+        ITagDao tagDao = TagDaoImpl.getInstance();
+        return tagDao.find(id);
+    }
+
+    @Override
+    public boolean delete(int id){
+        ITagDao tagDao = TagDaoImpl.getInstance();
+        return tagDao.delete(id);
+    }
+
+    @Override
+    public boolean add(String name){
+        ITagDao tagDao = TagDaoImpl.getInstance();
+        return tagDao.add(name);
+    }
+
+    @Override
+    public boolean update(Tag tag){
+        ITagDao tagDao = TagDaoImpl.getInstance();
+        return tagDao.update(tag);
+    }
 }
