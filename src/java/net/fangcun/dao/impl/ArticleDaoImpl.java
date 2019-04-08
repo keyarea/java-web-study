@@ -154,4 +154,44 @@ public class ArticleDaoImpl implements IArticleDao {
         return articles.toArray(new Article[articles.size()]);
 
     }
+
+    @Override
+    public Article[] find(){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Article> articles = new ArrayList<>();
+        try {
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT * FROM article";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Article article = new Article();
+
+                // 设置id
+                article.setId(String.valueOf(resultSet.getInt("id")));
+                // 设置文章内容
+                article.setContent(resultSet.getString("content"));
+                // 设置文章标题
+                article.setTitle(resultSet.getString("title"));
+                // 设置文章创建时间
+                article.setCreateTime(resultSet.getTimestamp("createTime"));
+                // 设置文章更新时间
+                article.setUpdateTime(resultSet.getTimestamp("updateTime"));
+                // 将该对象添加到数组
+                articles.add(article);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return articles.toArray(new Article[articles.size()]);
+    }
+
 }

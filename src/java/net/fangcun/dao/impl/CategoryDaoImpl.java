@@ -174,4 +174,35 @@ public class CategoryDaoImpl implements ICategoryDao {
         }
         return i > 0;
     }
+
+    @Override
+    public Category find(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Category category = new Category();
+        try{
+            String id = article.getId();
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "select category.id,category.name from category join article on article.category = category.id where article.id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                category.setId(String.valueOf(resultSet.getInt("id")));
+                category.setName(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return category;
+    }
 }

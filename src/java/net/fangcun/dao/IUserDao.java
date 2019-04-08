@@ -1,5 +1,6 @@
 package net.fangcun.dao;
 
+import net.fangcun.domain.Article;
 import net.fangcun.domain.User;
 
 public interface IUserDao {
@@ -61,4 +62,11 @@ public interface IUserDao {
      * @return 用户列表
      */
     User[] findPartUsers(int skip, int limit);
+
+    /**
+     * 根据文章添加作者
+     * @param article
+     * @return
+     */
+    User find(Article article);
 }

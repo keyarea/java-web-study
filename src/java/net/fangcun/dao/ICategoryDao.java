@@ -1,5 +1,6 @@
 package net.fangcun.dao;
 
+import net.fangcun.domain.Article;
 import net.fangcun.domain.Category;
 
 public interface ICategoryDao{
@@ -38,6 +39,13 @@ public interface ICategoryDao{
      * @return
      */
     boolean update(Category category);
+
+    /**
+     * 根据文章找到分类
+     * @param article
+     * @return
+     */
+    Category find(Article article);
 
 
 }

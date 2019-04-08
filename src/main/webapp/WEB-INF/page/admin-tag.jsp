@@ -51,10 +51,10 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">标签名称</th>
-                                <th scope="col">文章数量</th>
-                                <th scope="col">操作</th>
+                                <th scope="col" nowrap>#</th>
+                                <th scope="col" nowrap>标签名称</th>
+                                <th scope="col" nowrap>文章数量</th>
+                                <th scope="col" nowrap>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,10 +67,10 @@
                                 <c:otherwise>
                                     <c:forEach var="tag" items="${tags}" >
                                         <tr>
-                                            <th scope="row" class="align-middle">${tag.id}</th>
-                                            <td class="align-middle">${tag.name}</td>
-                                            <td class="align-middle">${fn:length(tag.articles)}</td>
-                                            <td class="align-middle">
+                                            <th scope="row" class="align-middle" nowrap>${tag.id}</th>
+                                            <td class="align-middle" nowrap>${tag.name}</td>
+                                            <td class="align-middle" nowrap>${fn:length(tag.articles)}</td>
+                                            <td class="align-middle" nowrap>
                                                 <button type="button" class="btn-info btn  btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#editTagModal">编辑</button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#deleteTagModal">删除</button>
                                             </td>

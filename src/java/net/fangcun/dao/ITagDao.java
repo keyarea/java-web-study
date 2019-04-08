@@ -1,5 +1,6 @@
 package net.fangcun.dao;
 
+import net.fangcun.domain.Article;
 import net.fangcun.domain.Tag;
 
 public interface ITagDao {
@@ -36,5 +37,12 @@ public interface ITagDao {
      * @return
      */
     boolean update(Tag tag);
+
+    /**
+     * 根据文章找到文章的标签
+     * @param article
+     * @return
+     */
+    Tag[] find(Article article);
 
 }

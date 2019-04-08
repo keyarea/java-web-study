@@ -51,11 +51,11 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">用户名</th>
-                                <th scope="col">昵称</th>
-                                <th scope="col">文章数</th>
-                                <th scope="col">操作</th>
+                                <th scope="col" nowrap>#</th>
+                                <th scope="col" nowrap>用户名</th>
+                                <th scope="col" nowrap>昵称</th>
+                                <th scope="col" nowrap>文章数</th>
+                                <th scope="col" nowrap>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -68,11 +68,11 @@
                                 <c:otherwise>
                                     <c:forEach var="user" items="${users}" >
                                         <tr>
-                                            <th scope="row" class="align-middle">${user.id}</th>
-                                            <td class="align-middle">${user.name}</td>
-                                            <td class="align-middle">${user.nickname}</td>
-                                            <td class="align-middle">${fn:length(user.articles)}</td>
-                                            <td class="align-middle">
+                                            <th nowrap scope="row" class="align-middle">${user.id}</th>
+                                            <td nowrap class="align-middle">${user.name}</td>
+                                            <td nowrap class="align-middle">${user.nickname}</td>
+                                            <td nowrap class="align-middle">${fn:length(user.articles)}</td>
+                                            <td nowrap class="align-middle">
                                                 <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
                                             </td>

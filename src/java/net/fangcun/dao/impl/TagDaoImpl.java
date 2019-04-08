@@ -1,6 +1,7 @@
 package net.fangcun.dao.impl;
 
 import net.fangcun.dao.ITagDao;
+import net.fangcun.domain.Article;
 import net.fangcun.domain.Tag;
 import net.fangcun.util.JdbcUtils_C3P0;
 
@@ -173,6 +174,46 @@ public class TagDaoImpl implements ITagDao {
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
         return i > 0;
+    }
+
+    @Override
+    public Tag[] find(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Tag> tags = new ArrayList<>();
+        try{
+            String id = article.getId();
+
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "select * from tag join article_tag on article_tag.tag = tag.id where article_tag.article = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+
+                Tag tag = new Tag();
+
+                tag.setId(String.valueOf(resultSet.getInt("id")));
+                tag.setName(resultSet.getString("name"));
+
+                tags.add(tag);
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return tags.toArray(new Tag[tags.size()]);
+
     }
 
 }

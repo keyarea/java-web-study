@@ -29,5 +29,11 @@ public interface IArticleDao   {
      */
     Article[] find(Tag tag);
 
+    /**
+     * 得到所有的分类
+     * @return
+     */
+    Article[] find();
+
 }
 

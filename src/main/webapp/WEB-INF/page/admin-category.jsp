@@ -51,10 +51,10 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">分类名称</th>
-                                <th scope="col">文章数量</th>
-                                <th scope="col">操作</th>
+                                <th scope="col" nowrap>#</th>
+                                <th scope="col" nowrap>分类名称</th>
+                                <th scope="col" nowrap>文章数量</th>
+                                <th scope="col" nowrap>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,10 +67,10 @@
                                 <c:otherwise>
                                     <c:forEach  items="${categories}" var="category">
                                         <tr>
-                                            <th class="align-middle">${category.id}</th>
-                                            <td class="align-middle">${category.name}</td>
-                                            <td class="align-middle">${fn:length(category.articles)}</td>
-                                            <td class="align-middle">
+                                            <th class="align-middle" nowrap>${category.id}</th>
+                                            <td class="align-middle" nowrap>${category.name}</td>
+                                            <td class="align-middle" nowrap>${fn:length(category.articles)}</td>
+                                            <td class="align-middle" nowrap>
                                                 <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editCategoryModal">编辑</button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteCategoryModal">删除</button>
                                             </td>

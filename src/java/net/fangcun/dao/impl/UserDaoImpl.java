@@ -2,6 +2,7 @@ package net.fangcun.dao.impl;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.fangcun.dao.IUserDao;
+import net.fangcun.domain.Article;
 import net.fangcun.domain.User;
 import net.fangcun.util.JdbcUtils_C3P0;
 import java.sql.Connection;
@@ -308,5 +309,37 @@ public class UserDaoImpl implements IUserDao {
             }
         }
         return instance;
+    }
+
+    @Override
+    public User find(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = new User();
+        try{
+            String id = article.getId();
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "select user.id,user.name,user.nickname,user.password from user join article on article.author = user.id where article.id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                user.setId(String.valueOf(resultSet.getInt("id")));
+                user.setName(resultSet.getString("name"));
+                user.setNickname(resultSet.getString("nickname"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return user;
     }
 }
