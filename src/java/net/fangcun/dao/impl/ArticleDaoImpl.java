@@ -7,6 +7,8 @@ import net.fangcun.domain.Category;
 import net.fangcun.domain.Tag;
 import net.fangcun.domain.User;
 import net.fangcun.util.JdbcUtils_C3P0;
+
+import javax.servlet.RequestDispatcher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -192,6 +194,44 @@ public class ArticleDaoImpl implements IArticleDao {
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
         return articles.toArray(new Article[articles.size()]);
+    }
+
+    @Override
+    public Article find(int id){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Article article = null;
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT * FROM article WHERE id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, String.valueOf(id));
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                article = new Article();
+
+                article.setId(String.valueOf(resultSet.getInt("id")));
+
+                article.setTitle(resultSet.getString("title"));
+
+                article.setContent(resultSet.getString("content"));
+
+                article.setCreateTime(resultSet.getTimestamp("createTime"));
+
+                article.setUpdateTime(resultSet.getTimestamp("updateTime"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return article;
     }
 
 }

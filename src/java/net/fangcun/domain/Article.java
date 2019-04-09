@@ -18,7 +18,7 @@ public class Article implements Serializable{
     // 文章类别
     private Category category;
     // 文章标签
-    private Tag tag;
+    private Tag[] tags;
     // 文章内容
     private String content;
 
@@ -70,12 +70,12 @@ public class Article implements Serializable{
         this.category = category;
     }
 
-    public Tag getTag() {
-        return tag;
+    public Tag[] getTags() {
+        return tags;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setTags(Tag[] tags) {
+        this.tags = tags;
     }
 
     public String getContent() {

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<div class="card">
+<div class="card admin-nav-card">
     <div class="card-header">
         <strong>管理面板</strong>
     </div>

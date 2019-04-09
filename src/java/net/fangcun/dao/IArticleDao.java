@@ -23,17 +23,24 @@ public interface IArticleDao   {
 
 
     /**
-     * 得到某个标签的分类
+     * 得到某个标签的文章
      * @param tag
      * @return
      */
     Article[] find(Tag tag);
 
     /**
-     * 得到所有的分类
+     * 得到所有的文章
      * @return
      */
     Article[] find();
+
+    /**
+     * 根据id找到对应的文章
+     * @param id
+     * @return
+     */
+    Article find(int id);
 
 }
 

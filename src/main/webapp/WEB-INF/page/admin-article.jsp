@@ -41,7 +41,7 @@
                             </form>
                         </div>
                         <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editCategoryModal">添加文章</button>
+                            <a href="/admin/articleDetail" role="button" aria-pressed="true"  class="btn btn-success btn-block">添加文章</a>
                         </div>
                     </div>
 
@@ -69,11 +69,15 @@
                                         <tr>
                                             <th nowrap class="align-middle">${article.id}</th>
                                             <td nowrap class="align-middle">${article.title}</td>
-                                            <td nowrap class="align-middle"></td>
-                                            <td nowrap class="align-middle"></td>
-                                            <td nowrap class="align-middle"></td>
+                                            <td nowrap class="align-middle">${article.category.name}</td>
                                             <td nowrap class="align-middle">
-                                                <button type="button" class="btn-info btn  btn-sm" >编辑</button>
+                                                <c:forEach var="tag" items="${article.tags}">
+                                                    <span class="badge badge-pill badge-info">${tag.name}</span>
+                                                </c:forEach>
+                                            </td>
+                                            <td nowrap class="align-middle">${article.author.nickname}</td>
+                                            <td nowrap class="align-middle">
+                                                <a href="/admin/articleDetail?id=${article.id}" role="button" aria-pressed="true" class="btn-info btn btn-sm" >编辑</a>
                                                 <button type="button" class="btn btn-danger btn-sm" >删除</button>
                                             </td>
                                         </tr>
