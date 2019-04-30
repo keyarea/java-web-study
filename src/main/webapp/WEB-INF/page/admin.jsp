@@ -38,6 +38,7 @@
 </div>
 
 
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
 </body>

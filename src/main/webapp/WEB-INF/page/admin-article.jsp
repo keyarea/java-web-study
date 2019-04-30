@@ -16,7 +16,7 @@
 
 <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<div class="container mt-4">
+<div class="container my-4">
     <div class="row justify-content-md-center">
         <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
             <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
@@ -55,6 +55,7 @@
                                 <th scope="col" nowrap>文章分类</th>
                                 <th scope="col" nowrap>文章标签</th>
                                 <th scope="col" nowrap>文章作者</th>
+                                <th scope="col" nowrap>文章状态</th>
                                 <th scope="col" nowrap>文章管理</th>
                             </tr>
                             </thead>
@@ -78,8 +79,12 @@
                                             </td>
                                             <td nowrap class="align-middle">${article.author.nickname}</td>
                                             <td nowrap class="align-middle">
+                                                已发布
+                                            </td>
+                                            <td nowrap class="align-middle">
                                                 <a href="/admin/articleDetail?id=${article.id}" role="button" aria-pressed="true" class="btn-info btn btn-sm" >编辑</a>
                                                 <button type="button" class="btn btn-danger btn-sm" >删除</button>
+                                                <button type="button" class="btn btn-secondary btn-sm">预览</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -95,6 +100,7 @@
     </div>
 </div>
 
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>

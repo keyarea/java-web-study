@@ -15,7 +15,7 @@
 
 <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<div class="container mt-4">
+<div class="container my-4">
     <div class="row justify-content-md-center">
         <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
             <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
@@ -30,6 +30,7 @@
 
 
 
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
 </body>
 </html>

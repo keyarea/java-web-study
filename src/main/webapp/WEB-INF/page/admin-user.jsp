@@ -18,7 +18,7 @@
 <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
 
-<div class="container mt-4">
+<div class="container my-4">
     <div class="row justify-content-md-center">
         <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
             <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
@@ -129,7 +129,7 @@
 
 <%--删除用户模态框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteUserModal">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">删除用户</h5>
@@ -150,6 +150,7 @@
 
 
 
+<%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
