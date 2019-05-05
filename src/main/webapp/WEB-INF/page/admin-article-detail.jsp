@@ -20,7 +20,7 @@
 <div class="container mt-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/admin">管理中心</a></li>
             <li class="breadcrumb-item"><a href="/admin/article">文章管理</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 <c:choose>

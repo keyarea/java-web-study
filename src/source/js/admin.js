@@ -430,3 +430,29 @@ function updateTag(tagID, title) {
 
 }
 
+$("#deleteArticleModal").on("show.bs.modal", function(event) {
+    var button = $(event.relatedTarget);
+    var articleID = button.data("id");
+    var modal = $(this);
+    modal.find("#deleteArticleModalBody").text("您是否删除id为" + articleID + "的文章？");
+    $("#deleteArticle").click(function (e) {
+        $.ajax("/admin/deleteArticle",{
+            method: "post",
+            data: {id: articleID},
+            success: function (data) {
+                $("#deleteArticleModal").modal('hide');
+                alert("成功删除标签！");
+                window.location.reload();
+            },
+            error: function (error) {
+                alert(JSON.parse(error));
+            }
+        })
+    });
+
+});
+
+$("#deleteArticleModal").on("hidden.bs.modal", function (event) {
+    $("#deleteArticle").unbind("click");
+});
+

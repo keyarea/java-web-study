@@ -42,5 +42,12 @@ public interface IArticleDao   {
      */
     Article find(int id);
 
+    /**
+     * 根据id来删除文章
+     * @param id
+     * @return
+     */
+    boolean delete(int id);
+
 }
 

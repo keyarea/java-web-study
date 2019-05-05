@@ -8,7 +8,6 @@ import net.fangcun.domain.Tag;
 import net.fangcun.domain.User;
 import net.fangcun.util.JdbcUtils_C3P0;
 
-import javax.servlet.RequestDispatcher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +26,35 @@ public class ArticleDaoImpl implements IArticleDao {
             }
         }
         return instance;
+    }
+
+    private ArticleDaoImpl(){
+        super();
+    }
+
+    @Override
+    public boolean delete(int id){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "DELETE FROM article WHERE id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, String.valueOf(id));
+
+            isOk = preparedStatement.execute();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOk;
+
     }
 
     @Override

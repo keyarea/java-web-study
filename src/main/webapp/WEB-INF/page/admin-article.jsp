@@ -63,7 +63,7 @@
                             <c:choose>
                                 <c:when test="${empty articles}">
                                     <tr>
-                                        <td  colspan="6" class="text-center">暂无数据</td>
+                                        <td  colspan="7" class="text-center">暂无数据</td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
@@ -83,7 +83,7 @@
                                             </td>
                                             <td nowrap class="align-middle">
                                                 <a href="/admin/articleDetail?id=${article.id}" role="button" aria-pressed="true" class="btn-info btn btn-sm" >编辑</a>
-                                                <button type="button" class="btn btn-danger btn-sm" >删除</button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="${article.id}" data-toggle="modal" data-target="#deleteArticleModal">删除</button>
                                                 <button type="button" class="btn btn-secondary btn-sm">预览</button>
                                             </td>
                                         </tr>
@@ -95,6 +95,27 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--删除文章模态框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteArticleModal">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">删除文章</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteArticleModalBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteArticle">确认</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>

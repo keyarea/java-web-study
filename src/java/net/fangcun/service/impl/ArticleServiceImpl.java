@@ -21,7 +21,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class ArticleServiceImpl implements IArticleService {
-    private static IArticleService instance;
+    private static IArticleService instance = null;
+
+    private ArticleServiceImpl(){
+    }
 
     public static IArticleService getInstance() {
         if (instance == null) {
@@ -32,6 +35,12 @@ public class ArticleServiceImpl implements IArticleService {
             }
         }
         return instance;
+    }
+
+    @Override
+    public boolean deleteArticle(int id) {
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        return articleDao.delete(id);
     }
 
     @Override

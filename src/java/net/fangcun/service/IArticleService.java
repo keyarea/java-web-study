@@ -5,6 +5,13 @@ import net.fangcun.domain.Article;
 public interface IArticleService {
 
     /**
+     * 根据id来删除文章
+     * @param id
+     * @return
+     */
+    boolean deleteArticle(int id);
+
+    /**
      * 给文章添加分类
      * @return
      */
