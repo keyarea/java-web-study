@@ -19,29 +19,37 @@ public class DeleteTagByID extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException{
-        String id = request.getParameter("id");
+        String TagId = request.getParameter("id");
 
-        if(id == null) {
-            response.sendError(400);
+        if(TagId == null) {
+            response.setStatus(400);
         }
 
-        ITagService tagService = TagServiceImpl.getInstance();
-        boolean result = tagService.delete(Integer.parseInt(id));
+        try{
+            ITagService tagService = TagServiceImpl.getInstance();
+            boolean result = tagService.delete(Integer.parseInt(TagId));
 
-        response.setContentType("application/json;charset=utf-8");
-        JSONObject jsonObject = new JSONObject();
-        if(result){
-            jsonObject.put("result", true);
-            jsonObject.put("message", "删除标签失败！");
-        }else{
-            jsonObject.put("result", false);
-            jsonObject.put("message", "成功删除标签！");
+        }catch (Exception e){
+
         }
 
-        PrintWriter writer = response.getWriter();
-        writer.println(jsonObject);
-        writer.flush();
-        writer.close();
+//        ITagService tagService = TagServiceImpl.getInstance();
+//        boolean result = tagService.delete(Integer.parseInt(id));
+//
+//        response.setContentType("application/json;charset=utf-8");
+//        JSONObject jsonObject = new JSONObject();
+//        if(result){
+//            jsonObject.put("result", true);
+//            jsonObject.put("message", "删除标签失败！");
+//        }else{
+//            jsonObject.put("result", false);
+//            jsonObject.put("message", "成功删除标签！");
+//        }
+//
+//        PrintWriter writer = response.getWriter();
+//        writer.println(jsonObject);
+//        writer.flush();
+//        writer.close();
     }
 
 

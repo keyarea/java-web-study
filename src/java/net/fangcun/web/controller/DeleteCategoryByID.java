@@ -23,13 +23,12 @@ public class DeleteCategoryByID extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{
-        String pattern = "^\\d+$";
         String categoryID = request.getParameter("id");
 
-        boolean access = Pattern.matches(pattern, categoryID);
-        if(!access){
-            response.sendError(400, "错误的请求参数");
+        if(categoryID == null){
+            response.setStatus(400);
         }
+
         try{
             int id = Integer.parseInt(categoryID);
             boolean result = CategoryServiceImpl.getInstance().delete(id);
@@ -40,7 +39,7 @@ public class DeleteCategoryByID extends HttpServlet {
                 throw new Exception("删除分类失败！");
             }
         }catch (Exception e){
-            response.sendError(500,e.getMessage());
+            response.setStatus(500);
         }
     }
 }

@@ -13,7 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CategoryDaoImpl implements ICategoryDao {
-    private static ICategoryDao instance;
+    private static ICategoryDao instance = null;
+
+    private CategoryDaoImpl(){}
 
     public static ICategoryDao getInstance(){
         if(instance == null){
@@ -114,7 +116,7 @@ public class CategoryDaoImpl implements ICategoryDao {
             preparedStatement = connection.prepareStatement(sql);
             // 执行查找操作
             int result = preparedStatement.executeUpdate();
-            isOK = result == 1;
+            isOK = result > 1;
         }catch (Exception e){
             e.printStackTrace();
         }finally {

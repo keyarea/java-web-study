@@ -12,7 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TagDaoImpl implements ITagDao {
-    private static ITagDao instance;
+    private static ITagDao instance = null;
+
+    private TagDaoImpl(){}
 
     public static ITagDao getInstance(){
         if(instance == null){

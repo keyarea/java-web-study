@@ -29,7 +29,6 @@ public class ArticleDaoImpl implements IArticleDao {
     }
 
     private ArticleDaoImpl(){
-        super();
     }
 
     @Override
@@ -47,7 +46,9 @@ public class ArticleDaoImpl implements IArticleDao {
 
             preparedStatement.setString(1, String.valueOf(id));
 
-            isOk = preparedStatement.execute();
+            int result = preparedStatement.executeUpdate();
+
+            isOk = result > 0;
         }catch(Exception e){
             e.printStackTrace();
         }finally {

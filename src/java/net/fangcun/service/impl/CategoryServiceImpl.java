@@ -9,7 +9,9 @@ import net.fangcun.domain.Category;
 import net.fangcun.service.ICategoryService;
 
 public class CategoryServiceImpl implements ICategoryService {
-    private static CategoryServiceImpl instance;
+    private static CategoryServiceImpl instance = null;
+
+    private CategoryServiceImpl(){}
 
     public static CategoryServiceImpl getInstance(){
         if(instance == null){
@@ -21,6 +23,7 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return instance;
     }
+
 
     @Override
     public Category find(int id){

@@ -1,5 +1,3 @@
-var $ = require("jquery");
-
 /**
  * 注销按钮单击所触发的事件
  */
@@ -105,15 +103,15 @@ $("#editUserModal").on("show.bs.modal", function (event) {
             return;
         }
 
-       if(userID === ""){ // userID为空代表为添加用户
-           if(name === ""){
-               alert("用户名不能为空");
-               return;
-           }
-           addUser(name, nickname, password);
-       }else{ // userID有则表示为修改用户
-           updateUser(userID, nickname, password);
-       }
+        if(userID === ""){ // userID为空代表为添加用户
+            if(name === ""){
+                alert("用户名不能为空");
+                return;
+            }
+            addUser(name, nickname, password);
+        }else{ // userID有则表示为修改用户
+            updateUser(userID, nickname, password);
+        }
     });
 
     if(userID === ""){
@@ -128,7 +126,7 @@ $("#editUserModal").on("show.bs.modal", function (event) {
             modal.find("#nickname-text").val(data.nickname);
             modal.find("#password-text").val(data.password);
             modal.find("#verify-password").val(data.password);
-       },
+        },
         error: function (error) {
             alert(error);
         }
@@ -172,7 +170,8 @@ $("#deleteUserModal").on("show.bs.modal", function (event) {
                 window.location.reload();
             },
             error: function (error) {
-                alert(JSON.parse(error));
+                $("#deleteUserModal").modal('hide');
+                alert("删除用户失败！");
             }
         })
     });
@@ -441,7 +440,7 @@ $("#deleteArticleModal").on("show.bs.modal", function(event) {
             data: {id: articleID},
             success: function (data) {
                 $("#deleteArticleModal").modal('hide');
-                alert("成功删除标签！");
+                alert("成功删除文章！");
                 window.location.reload();
             },
             error: function (error) {
@@ -455,4 +454,3 @@ $("#deleteArticleModal").on("show.bs.modal", function(event) {
 $("#deleteArticleModal").on("hidden.bs.modal", function (event) {
     $("#deleteArticle").unbind("click");
 });
-

@@ -29,7 +29,7 @@ public class DeleteUserByID extends HttpServlet {
 
         boolean access = Pattern.matches(pattern, userID);
         if(!access){
-            response.sendError(400, "错误的请求参数");
+            response.setStatus(400);
         }
         try{
             int id = Integer.parseInt(userID);
@@ -41,7 +41,7 @@ public class DeleteUserByID extends HttpServlet {
                 throw new Exception("删除用户失败！");
             }
         }catch (Exception e){
-            response.sendError(500,e.getMessage());
+            response.setStatus(500);
         }
 
     }

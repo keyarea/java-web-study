@@ -24,12 +24,8 @@ public class DeleteArticleByID extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pattern = "^\\d+$";
         String articleID = request.getParameter("id");
-
-        boolean access = Pattern.matches(pattern, articleID);
-
-        if(!access){
+        if(articleID == null){
             response.setStatus(400);
         }
 
@@ -40,7 +36,7 @@ public class DeleteArticleByID extends HttpServlet {
             if (result) {
                 response.setStatus(200);
             }else {
-                throw new Exception("删除分类失败");
+                throw new Exception("删除文章失败");
             }
         }catch (Exception e){
             response.setStatus(500);

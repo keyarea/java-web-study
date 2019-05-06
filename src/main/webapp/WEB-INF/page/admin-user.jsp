@@ -154,5 +154,6 @@
 
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
+<%@include file="/WEB-INF/page/_partial/admin/script.jsp"%>
 </body>
 </html>

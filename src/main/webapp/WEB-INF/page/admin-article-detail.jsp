@@ -69,7 +69,6 @@
 
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
-<script src="/jquery.min.js"></script>
 <script src="/zepto.min.js"></script>
 <script src="/editor.md-1.5.0/editormd.min.js"></script>
 <script type="text/javascript">
@@ -103,5 +102,7 @@
         */
     });
 </script>
+<%@include file="/WEB-INF/page/_partial/admin/script.jsp"%>
+
 </body>
 </html>

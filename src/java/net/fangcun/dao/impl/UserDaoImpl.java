@@ -13,7 +13,9 @@ import java.util.ArrayList;
 
 public class UserDaoImpl implements IUserDao {
 
-    private static UserDaoImpl instance;
+    private static UserDaoImpl instance = null;
+
+    private UserDaoImpl(){}
 
     @Override
     public User[] find() {
@@ -80,7 +82,7 @@ public class UserDaoImpl implements IUserDao {
             statement = connection.prepareStatement(sql);
             // 执行查找操作
             int result = statement.executeUpdate();
-            isOK = result == 1;
+            isOK = result > 1;
         }catch (Exception e){
             e.printStackTrace();
         }finally {

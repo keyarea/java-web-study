@@ -65,8 +65,9 @@
     </div>
 </div>
 
-<%@include file="/WEB-INF/page/_partial/script.jsp"%>
 
+<%@include file="/WEB-INF/page/_partial/script.jsp"%>
+<script type="application/javascript" src="/js/login.js"></script>
 
 </body>
 </html>
