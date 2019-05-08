@@ -25,8 +25,9 @@ public class DeleteCategoryByID extends HttpServlet {
             throws IOException, ServletException{
         String categoryID = request.getParameter("id");
 
+
         if(categoryID == null){
-            response.setStatus(400);
+            response.sendError(400, "请求参数错误");
         }
 
         try{
@@ -39,7 +40,7 @@ public class DeleteCategoryByID extends HttpServlet {
                 throw new Exception("删除分类失败！");
             }
         }catch (Exception e){
-            response.setStatus(500);
+            response.sendError(500, e.getMessage());
         }
     }
 }

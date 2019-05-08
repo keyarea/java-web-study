@@ -196,7 +196,8 @@ $("#deleteCategoryModal").on("show.bs.modal", function (event) {
                 window.location.reload();
             },
             error: function (error) {
-                alert(JSON.parse(error));
+                $("#deleteUserModal").modal('hide');
+                alert("删除分类失败！");
             }
         })
     });
@@ -323,7 +324,8 @@ $("#deleteTagModal").on("show.bs.modal", function (event) {
                 window.location.reload();
             },
             error: function (error) {
-                alert(JSON.parse(error));
+                $("#deleteTagModal").modal('hide');
+                alert("删除标签失败！")
             }
         })
     });
@@ -444,7 +446,8 @@ $("#deleteArticleModal").on("show.bs.modal", function(event) {
                 window.location.reload();
             },
             error: function (error) {
-                alert(JSON.parse(error));
+                $("#deleteArticleModal").modal('hide');
+                alert("删除文章失败！");
             }
         })
     });
