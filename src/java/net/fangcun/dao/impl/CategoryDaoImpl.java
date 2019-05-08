@@ -116,7 +116,7 @@ public class CategoryDaoImpl implements ICategoryDao {
             preparedStatement = connection.prepareStatement(sql);
             // 执行查找操作
             int result = preparedStatement.executeUpdate();
-            isOK = result > 1;
+            isOK = result > 0;
         }catch (Exception e){
             e.printStackTrace();
         }finally {

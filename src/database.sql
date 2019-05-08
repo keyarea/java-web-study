@@ -1,3 +1,10 @@
+# 创建数据库
+CREATE DATABASE blog DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+# 使用创建的这个数据库
+USE blog;
+
+# 创建用户表
 CREATE TABLE user
 (
   `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户id',
@@ -7,6 +14,7 @@ CREATE TABLE user
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+# 创建标签表
 CREATE TABLE tag
 (
   `id`   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '标签id',
@@ -14,6 +22,7 @@ CREATE TABLE tag
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+# 创建分类表
 CREATE TABLE category
 (
   `id`   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '类别id',
@@ -21,6 +30,7 @@ CREATE TABLE category
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+# 创建文章表
 CREATE TABLE article
 (
   `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章id',
@@ -39,7 +49,7 @@ CREATE TABLE article
   CONSTRAINT `article_category` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-
+# 创建评论表
 CREATE TABLE comment(
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id',
   `article` INT(10) UNSIGNED NOT NULL COMMENT '外键-文章',
@@ -50,19 +60,29 @@ CREATE TABLE comment(
   FOREIGN KEY (`article`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+# 创建文章与标签的表
 CREATE TABLE article_tag (
   `article` INT(10) UNSIGNED NOT NULL COMMENT '外键-文章',
   `tag` INT(10) UNSIGNED NOT NULL COMMENT '外键-标签',
   PRIMARY KEY (`article`, `tag`),
-  FOREIGN KEY (`article`) REFERENCES `article` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-  FOREIGN KEY (`tag`) REFERENCES `tag` (`id`) ON DELETE SET NULL ON UPDATE  NO ACTION
+  FOREIGN KEY (`article`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  FOREIGN KEY (`tag`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE  NO ACTION
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+# 插入一个用户数据
 INSERT INTO user(name, nickname, password) VALUES('k','k','123');
 
+# 插入一个分类数据
 INSERT INTO category(name) VALUES('java');
 
+# 插入一个标签数据
 INSERT INTO tag(name) VALUES('jdbc');
 
+# 插入一个标签数据
 INSERT INTO tag(name) VALUES('mysql');
 
+# 插入一个文章数据
+INSERT INTO article(title, author, category, content) VALUES("jdbc基础", 1, 1, "# jdbc基础");
+
+# 文章与标签关联
+INSERT INTO article_tag(article, tag) VALUES(1, 1);

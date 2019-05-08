@@ -54,7 +54,7 @@
             </div>
             <div class="btn-group text-right" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-info">发表</button>
-                <button type="button" class="btn btn-success">保存</button>
+                <button type="button" class="btn btn-success" id="saveArticle">保存</button>
             </div>
 
         </div>
@@ -69,10 +69,8 @@
 
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
-<script src="/zepto.min.js"></script>
 <script src="/editor.md-1.5.0/editormd.min.js"></script>
 <script type="text/javascript">
-    $(function() {
         var editor = editormd("editormd", {
             path : "/editor.md-1.5.0/lib/", // Autoload modules mode, codemirror, marked... dependents libs path,
             width: "100%",
@@ -92,15 +90,6 @@
             flowChart : true,
             sequenceDiagram : true
         });
-
-        /*
-        // or
-        var editor = editormd({
-            id   : "editormd",
-            path : "../lib/"
-        });
-        */
-    });
 </script>
 <%@include file="/WEB-INF/page/_partial/admin/script.jsp"%>
 

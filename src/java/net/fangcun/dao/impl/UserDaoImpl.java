@@ -70,24 +70,26 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public boolean delete(int id){
         Connection connection = null;
-        PreparedStatement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         boolean isOK = false;
         try{
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
             // 要执行的sql语句
-            String sql = "DELETE FROM user WHERE id = " + id;
+            String sql = "DELETE FROM user WHERE id = ?";
             //通过conn对象获取负责执行SQL命令的PreparedStatement对象
-            statement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, String.valueOf(id));
             // 执行查找操作
-            int result = statement.executeUpdate();
-            isOK = result > 1;
+            int result = preparedStatement.executeUpdate();
+            isOK = result > 0;
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             // 执行完成之后释放相关资源
-            JdbcUtils_C3P0.release(connection, statement, resultSet);
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
         return isOK;
     }
