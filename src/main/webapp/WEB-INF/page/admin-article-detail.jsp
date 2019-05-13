@@ -14,8 +14,18 @@
 
 <body>
 
-
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
+        <div class="container font-weight-bold">
+            <a class="navbar-brand" href="/">
+                <img src="/img/fc.png" height="30" alt="">
+            </a>
+            <button type="button" data-toggle="modal" data-target="#logoutModal" class="btn btn-danger" >
+                注销
+            </button>
+        </div>
+    </nav>
+</header>
 
 <div class="container mt-4">
     <nav aria-label="breadcrumb">
@@ -36,28 +46,94 @@
     </nav>
 
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="input-group input-group my-4">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-lg">文章标题</span>
+    <div class="row">
+        <div class="col-9">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="post" action="/admin/insertArticle">
+                        <div class="input-group input-group my-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-lg">文章标题</span>
+                            </div>
+                            <input type="text" name="title" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value="${article.title}">
+                        </div>
+
+
+                        <link rel="stylesheet" href="/editor.md-1.5.0/css/editormd.min.css" />
+                        <div id="editormd" class="mt-4">
+                            <textarea style="display:none;" name="content">${article.content}</textarea>
+                        </div>
+                        <div class="btn-group text-right" role="group" aria-label="Basic example">
+                            <input type="submit" class="btn btn-success" value="保存" />
+                        </div>
+                    </form>
+
                 </div>
-                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value="${article.title}">
-            </div>
-
-
-
-
-            <link rel="stylesheet" href="/editor.md-1.5.0/css/editormd.min.css" />
-            <div id="editormd" class="mt-4">
-                <textarea style="display:none;">${article.content}</textarea>
-            </div>
-            <div class="btn-group text-right" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-info">发表</button>
-                <button type="button" class="btn btn-success" id="saveArticle">保存</button>
             </div>
 
         </div>
+        <div class="col-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    发布
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-danger">移到回收站</button>
+                    <button class="btn btn-success">保存</button>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    文章标签
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="添加标签" aria-label="标签" aria-describedby="标签">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" type="button">添加</button>
+                        </div>
+                    </div>
+                    <p class="font-weight-light">当前文章没有标签</p>
+                    <button class="btn btn-secondary">选择常用的标签</button>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    文章分类
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs" id="categoryTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="all-category-tab" data-toggle="tab" href="#allCategory" role="tab" aria-controls="allCategoryContent" aria-selected="true">全部分类</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="most-category-tab" data-toggle="tab" href="#mostCategory" role="tab" aria-controls="mostCategoryContent" aria-selected="false">常用分类</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="categoryTabContent">
+                        <div class="tab-pane fade show active" id="allCategory" role="tabpanel" aria-labelledby="all-category-tab">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="category1" value="java" checked>
+                                <label class="form-check-label" for="category1">
+                                    Java
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="category2" value="java">
+                                <label class="form-check-label" for="category2">
+                                    JavaScript
+                                </label>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="mostCategory" role="tabpanel" aria-labelledby="most-category-tab">
+                            常用分裂
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
  </div>
