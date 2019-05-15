@@ -47,7 +47,7 @@
 
 
     <div class="row">
-        <div class="col-9">
+        <div class="col-12 col-lg-9">
             <div class="card mb-4">
                 <div class="card-body">
                     <form method="post" action="/admin/insertArticle">
@@ -63,16 +63,13 @@
                         <div id="editormd" class="mt-4">
                             <textarea style="display:none;" name="content">${article.content}</textarea>
                         </div>
-                        <div class="btn-group text-right" role="group" aria-label="Basic example">
-                            <input type="submit" class="btn btn-success" value="保存" />
-                        </div>
                     </form>
 
                 </div>
             </div>
 
         </div>
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
             <div class="card mb-4">
                 <div class="card-header">
                     发布
@@ -93,7 +90,12 @@
                             <button class="btn btn-outline-success" type="button">添加</button>
                         </div>
                     </div>
-                    <p class="font-weight-light">当前文章没有标签</p>
+                    <p class="font-weight-light">
+                        <span class="badge badge-success">
+                            Java
+                        </span>
+                        <span class="badge badge-success">JavaScript</span>
+                    </p>
                     <button class="btn btn-secondary">选择常用的标签</button>
                 </div>
             </div>
@@ -102,16 +104,7 @@
                     文章分类
                 </div>
                 <div class="card-body">
-                    <ul class="nav nav-tabs" id="categoryTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="all-category-tab" data-toggle="tab" href="#allCategory" role="tab" aria-controls="allCategoryContent" aria-selected="true">全部分类</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="most-category-tab" data-toggle="tab" href="#mostCategory" role="tab" aria-controls="mostCategoryContent" aria-selected="false">常用分类</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="categoryTabContent">
-                        <div class="tab-pane fade show active" id="allCategory" role="tabpanel" aria-labelledby="all-category-tab">
+
 
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="category" id="category1" value="java" checked>
@@ -125,10 +118,6 @@
                                     JavaScript
                                 </label>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="mostCategory" role="tabpanel" aria-labelledby="most-category-tab">
-                            常用分裂
-                        </div>
                     </div>
                 </div>
             </div>

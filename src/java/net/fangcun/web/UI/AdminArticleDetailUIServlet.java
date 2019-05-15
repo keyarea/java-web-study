@@ -31,6 +31,7 @@ public class AdminArticleDetailUIServlet extends HttpServlet {
             }
         }
 
+
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/admin-article-detail.jsp");
         view.forward(request, response);
     }

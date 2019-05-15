@@ -82,7 +82,7 @@ INSERT INTO tag(name) VALUES('jdbc');
 INSERT INTO tag(name) VALUES('mysql');
 
 # 插入一个文章数据
-INSERT INTO article(title, author, category, content) VALUES("jdbc基础", 1, 1, "# jdbc基础");
+INSERT INTO article(title, author, category, content) VALUES("jdbc", 1, 1, "# jdbc");
 
 # 文章与标签关联
 INSERT INTO article_tag(article, tag) VALUES(1, 1);
