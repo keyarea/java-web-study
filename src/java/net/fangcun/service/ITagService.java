@@ -51,4 +51,11 @@ public interface ITagService {
      * @return
      */
     boolean update(Tag tag);
+
+    /**
+     * 是否已经存在该标签名
+     * @param name
+     * @return
+     */
+    boolean isExist(String name);
 }

@@ -29,6 +29,38 @@ public class CategoryDaoImpl implements ICategoryDao {
     }
 
     @Override
+    public Category find(String name) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Category category = null;
+
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT * FROM category WHERE name = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, name);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                category = new Category();
+                category.setId(String.valueOf(resultSet.getInt("id")));
+                category.setName(resultSet.getString("name"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return category;
+
+    }
+
+    @Override
     public Category find(int id) {
         Connection connection = null;
         Statement statement = null;
@@ -130,7 +162,7 @@ public class CategoryDaoImpl implements ICategoryDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        int i = 0;
+        boolean isOK = false;
         try{
             // 获取一个数据库连接
             connection = JdbcUtils_C3P0.getConnection();
@@ -141,14 +173,16 @@ public class CategoryDaoImpl implements ICategoryDao {
 
             preparedStatement.setString(1, category.getName());
 
-            i = preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
+
+            isOK = result > 0;
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             // 执行完成之后释放相关资源
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
-        return i > 0;
+        return isOK;
     }
 
     @Override

@@ -19,6 +19,13 @@ public interface ITagDao {
     Tag find(int id);
 
     /**
+     * 按照name查找标签
+     * @param name
+     * @return
+     */
+    Tag find(String name);
+
+    /**
      * 根据id删除标签
      * @param id
      * @return

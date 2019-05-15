@@ -25,6 +25,13 @@ public interface ICategoryDao{
      */
     boolean delete(int id);
 
+    /**
+     * 根据标签名查找分类
+     * @param name
+     * @return
+     */
+    Category find(String name);
+
 
     /**
      * 添加分类

@@ -50,7 +50,6 @@
         <div class="col-12 col-lg-9">
             <div class="card mb-4">
                 <div class="card-body">
-                    <form method="post" action="/admin/insertArticle">
                         <div class="input-group input-group my-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-lg">文章标题</span>
@@ -63,7 +62,6 @@
                         <div id="editormd" class="mt-4">
                             <textarea style="display:none;" name="content">${article.content}</textarea>
                         </div>
-                    </form>
 
                 </div>
             </div>
@@ -75,8 +73,8 @@
                     发布
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-danger">移到回收站</button>
-                    <button class="btn btn-success">保存</button>
+                    <button class="btn btn-danger btn-block">移到回收站</button>
+                    <button class="btn btn-success btn-block">保存</button>
                 </div>
             </div>
             <div class="card mb-4">
@@ -96,7 +94,7 @@
                         </span>
                         <span class="badge badge-success">JavaScript</span>
                     </p>
-                    <button class="btn btn-secondary">选择常用的标签</button>
+                    <button class="btn btn-info btn-block">选择常用的标签</button>
                 </div>
             </div>
             <div class="card mb-4">

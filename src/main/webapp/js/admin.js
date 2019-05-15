@@ -280,7 +280,7 @@ function updateCategory(id, title){
 }
 
 /**
- * 添加一个用户
+ * 添加一个分类
  * @param title
  */
 function addCategory(title){
@@ -289,12 +289,13 @@ function addCategory(title){
         data: {
             name: title
         },
-        success: function(result){
-            if(result){
-                alert("添加分类成功");
+        success: function(res){
+            console.log(res);
+            if(res.result){
+                alert(res.message);
                 window.location.reload();
             }else{
-                alert("添加分类失败");
+                alert(res.message);
                 window.location.reload();
             }
         },

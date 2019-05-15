@@ -20,6 +20,13 @@ public interface ICategoryService{
     Category find(int id);
 
     /**
+     * 查看该分类名是否存在
+     * @param name
+     * @return
+     */
+    boolean isExist(String name);
+
+    /**
      * 删除类别
      * @param id
      * @return

@@ -70,4 +70,11 @@ public class CategoryServiceImpl implements ICategoryService {
         ICategoryDao categoryDao = CategoryDaoImpl.getInstance();
         return categoryDao.update(category);
     }
+
+    @Override
+    public boolean isExist(String name) {
+        ICategoryDao categoryDao = CategoryDaoImpl.getInstance();
+        Category category = categoryDao.find(name);
+        return category != null;
+    }
 }

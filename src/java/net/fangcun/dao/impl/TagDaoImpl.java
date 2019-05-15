@@ -5,6 +5,7 @@ import net.fangcun.domain.Article;
 import net.fangcun.domain.Tag;
 import net.fangcun.util.JdbcUtils_C3P0;
 
+import javax.xml.bind.util.JAXBSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,37 @@ public class TagDaoImpl implements ITagDao {
             }
         }
         return instance;
+    }
+
+    @Override
+    public Tag find(String name){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Tag tag = null;
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT * FROM tag WHERE name = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, name);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                tag = new Tag();
+                tag.setId(String.valueOf(resultSet.getInt("id")));
+                tag.setName(resultSet.getString("name"));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return tag;
     }
 
     @Override
