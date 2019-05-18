@@ -21,23 +21,30 @@ public class AddTagServlet extends HttpServlet {
         String name = request.getParameter("name");
 
         if(name == null){
-            response.sendError(400);
+            response.sendError(400, "错误的请求参数");
         }
 
         ITagService tagService = TagServiceImpl.getInstance();
-        boolean result = tagService.add(name);
+        boolean isExist = tagService.isExist(name);
+
 
         response.setContentType("application/json;charset=utf-8");
-
         JSONObject jsonObject = new JSONObject();
-        if(result){
-            jsonObject.put("result", true);
-            jsonObject.put("message", "添加标签成功！");
-        }else{
-            jsonObject.put("result", false);
-            jsonObject.put("message", "添加标签失败！");
-        }
 
+        if(isExist){
+            jsonObject.put("result", false);
+            jsonObject.put("message", "已存在该分类名!");
+        }else{
+            boolean result = tagService.add(name);
+
+            if(result){
+                jsonObject.put("result", true);
+                jsonObject.put("message", "添加标签成功！");
+            }else{
+                jsonObject.put("result", false);
+                jsonObject.put("message", "添加标签失败！");
+            }
+        }
         PrintWriter writer = response.getWriter();
         writer.println(jsonObject);
         writer.flush();

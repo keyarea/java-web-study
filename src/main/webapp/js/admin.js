@@ -262,12 +262,12 @@ function updateCategory(id, title){
             id: id,
             name: title
         },
-        success: function(result){
-            if(result){
-                alert("更新分类成功");
+        success: function(res){
+            if(res.result){
+                alert(res.message);
                 window.location.reload();
             }else{
-                alert("更新分类失败");
+                alert(res.message);
                 window.location.reload();
             }
         },

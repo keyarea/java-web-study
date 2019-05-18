@@ -1,8 +1,14 @@
 package net.fangcun.web.UI;
 
 import net.fangcun.domain.Article;
+import net.fangcun.domain.Category;
+import net.fangcun.domain.Tag;
 import net.fangcun.service.IArticleService;
+import net.fangcun.service.ICategoryService;
+import net.fangcun.service.ITagService;
 import net.fangcun.service.impl.ArticleServiceImpl;
+import net.fangcun.service.impl.CategoryServiceImpl;
+import net.fangcun.service.impl.TagServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +36,13 @@ public class AdminArticleDetailUIServlet extends HttpServlet {
                 request.setAttribute("article", article);
             }
         }
+        ICategoryService categoryService = CategoryServiceImpl.getInstance();
+        Category[] categories = categoryService.find();
+        request.setAttribute("categories", categories);
 
+        ITagService tagService = TagServiceImpl.getInstance();
+        Tag[] tags = tagService.find();
+        request.setAttribute("tags",  tags);
 
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/admin-article-detail.jsp");
         view.forward(request, response);

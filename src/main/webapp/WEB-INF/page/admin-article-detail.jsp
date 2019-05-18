@@ -12,6 +12,7 @@
 <html>
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
 
+
 <body>
 
 <header id="header">
@@ -82,19 +83,18 @@
                     文章标签
                 </div>
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="添加标签" aria-label="标签" aria-describedby="标签">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-success" type="button">添加</button>
-                        </div>
-                    </div>
-                    <p class="font-weight-light">
-                        <span class="badge badge-success">
-                            Java
-                        </span>
-                        <span class="badge badge-success">JavaScript</span>
-                    </p>
-                    <button class="btn btn-info btn-block">选择常用的标签</button>
+
+                    <c:choose>
+                        <c:when test="empty categories">
+                            <p>暂无任何标签</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="tag" items="${tags}">
+
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
             <div class="card mb-4">
@@ -102,27 +102,35 @@
                     文章分类
                 </div>
                 <div class="card-body">
-
-
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="category" id="category1" value="java" checked>
-                                <label class="form-check-label" for="category1">
-                                    Java
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="category" id="category2" value="java">
-                                <label class="form-check-label" for="category2">
-                                    JavaScript
-                                </label>
-                            </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="no-categoty" value="">
+                        <label class="form-check-label" for="no-categoty">
+                            未分类
+                        </label>
                     </div>
+                    <c:choose>
+                        <c:when test="empty categories">
+                            <p>暂无任何分类</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${categories}" var="category">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="category-${category.id}}" value="${category.id}">
+                                    <label class="form-check-label" for="category-${category.id}}">
+                                        ${category.name}
+                                    </label>
+                                </div>
+
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
         </div>
-
     </div>
 
+</div>
  </div>
 
 
