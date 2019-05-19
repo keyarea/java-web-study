@@ -458,7 +458,3 @@ $("#deleteArticleModal").on("show.bs.modal", function(event) {
 $("#deleteArticleModal").on("hidden.bs.modal", function (event) {
     $("#deleteArticle").unbind("click");
 });
-
-$("#saveArticle").click(function (event) {
-    console.log(editor.getMarkdown());
-});

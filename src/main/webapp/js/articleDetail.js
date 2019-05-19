@@ -19,23 +19,53 @@ $(function () {
 });
 
 /**
+ * 保存按钮触发的事件
+ */
+$("#saveArticle").click(function (e) {
+    var id = GetUrlParam("id");
+    var title = $("input[name='title']").val();
+    var content = editor.getMarkdown();
+    var categoty = $("input[name='category']:checked").val();
+    var tags = [];
+    $("input[name='tag']:checked").each(function () {
+        tags.push($(this).val()); // 向数组中添加元素
+    });
+    console.log(id, title, content, categoty, tags);
+});
+
+/**
+ * 发起ajax请求,保存该数据到服务器
+ * @param title
+ * @param content
+ * @param category
+ * @param tags
+ */
+function insertArticle(title, content, category, tags){
+    $("/admin/insertArticle")
+}
+
+/**
  * 文章页中插入所有标签,选中文章的标签
  */
 function insertArticleTags(tags) {
-    console.log(tags);
+    //console.log(tags);
     for(var i = 0, l = tags.length; i< l; i++){
+        var checked = tags[i].checked ? "checked" : "";
+        var id = tags[i].id;
+        var name = tags[i].name;
         var content = "<div class=\"form-check\">\n" +
-            "  <input class=\"form-check-input\" type=\"checkbox\" value=\"" +
-            tags[i].id +
-            "\" id=\"" +
-            "" +
-            "tag-" + tags[i].id +
+            "  <input class=\"form-check-input\" name=\"tag\" type=\"checkbox\" value=\"" +
+            id +
+            "\" " +
+            checked + " "+
+            "id=\"" +
+            "tag-" + id +
             "" +
             "\">\n" +
             "  <label class=\"form-check-label\" for=\"" +
-            "tag-" + tags[i].id +
+            "tag-" +id +
             "\">\n" +
-            tags[i].name +
+            name +
             "  </label>\n" +
             "</div>";
         $("#articleTag").append(content);
@@ -46,12 +76,18 @@ function insertArticleTags(tags) {
  * 文章页中插入所有分类,选中文章的分类
  */
 function insertArticleCategories(categories) {
-    console.log(categories);
+    //console.log(categories);
     for (var i = 0, l = categories.length;i< l;i++){
+        var checked = categories[i].checked ? "checked" : "";
+        var id = categories[i].id;
+        var name = categories[i].name;
         var content = "<div class=\"form-check\">\n" +
-            "  <input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>\n" +
-            "  <label class=\"form-check-label\" for=\"exampleRadios1\">\n" +
-            categories[i].name+
+            "  <input class=\"form-check-input\" type=\"radio\" name=\"category\" id=\"" +
+            "category-" + id + "\" value=\"" + id + "\"" +
+            checked + ">\n" +
+            "  <label class=\"form-check-label\" for=\"" +
+            "category-" +id+"\">\n" +
+            name+
                 "  </label>\n" +
             "</div>";
         $("#articleCategory").append(content);

@@ -47,6 +47,7 @@
     </nav>
 
 
+
     <div class="row">
         <div class="col-12 col-lg-9">
             <div class="card mb-4">
@@ -75,7 +76,7 @@
                 </div>
                 <div class="card-body">
                     <button class="btn btn-danger btn-block">移到回收站</button>
-                    <button class="btn btn-success btn-block">保存</button>
+                    <button class="btn btn-success btn-block" id="saveArticle">保存</button>
                 </div>
             </div>
             <div class="card mb-4">
@@ -92,8 +93,8 @@
                 </div>
                 <div class="card-body" id="articleCategory">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="noArticleCategory" value="" checked>
-                        <label class="form-check-label" for="exampleRadios1">
+                        <input class="form-check-input" type="radio" name="category" id="noArticleCategory" value="" checked>
+                        <label class="form-check-label" for="noArticleCategory">
                             未分类
                         </label>
                     </div>
@@ -102,6 +103,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
  </div>
