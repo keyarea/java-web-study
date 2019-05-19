@@ -82,18 +82,7 @@
                 <div class="card-header">
                     文章标签
                 </div>
-                <div class="card-body">
-
-                    <c:choose>
-                        <c:when test="empty categories">
-                            <p>暂无任何标签</p>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="tag" items="${tags}">
-
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
+                <div class="card-body" id="articleTag" >
 
                 </div>
             </div>
@@ -101,29 +90,13 @@
                 <div class="card-header">
                     文章分类
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="articleCategory">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="category" id="no-categoty" value="">
-                        <label class="form-check-label" for="no-categoty">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="noArticleCategory" value="" checked>
+                        <label class="form-check-label" for="exampleRadios1">
                             未分类
                         </label>
                     </div>
-                    <c:choose>
-                        <c:when test="empty categories">
-                            <p>暂无任何分类</p>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach items="${categories}" var="category">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="category-${category.id}}" value="${category.id}">
-                                    <label class="form-check-label" for="category-${category.id}}">
-                                        ${category.name}
-                                    </label>
-                                </div>
-
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
 
                 </div>
             </div>
@@ -141,27 +114,7 @@
 
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
 <script src="/editor.md-1.5.0/editormd.min.js"></script>
-<script type="text/javascript">
-        var editor = editormd("editormd", {
-            path : "/editor.md-1.5.0/lib/", // Autoload modules mode, codemirror, marked... dependents libs path,
-            width: "100%",
-            //autoHeight: true,
-            height: "640",
-            toolbarAutoFixed: true,
-            codeFold : true,
-            //searchReplace : true,
-            //saveHTMLToTextarea : true,                // 保存HTML到Textarea
-            htmlDecode : "style,script,iframe",       // 开启HTML标签解析，为了安全性，默认不开启
-            emoji : true,
-            taskList : true,
-            tex : true,
-            tocm : true,         // Using [TOCM]
-            //autoLoadModules : false,
-            previewCodeHighlight : true,
-            flowChart : true,
-            sequenceDiagram : true
-        });
-</script>
+<script src="/js/articleDetail.js"></script>
 <%@include file="/WEB-INF/page/_partial/admin/script.jsp"%>
 
 </body>

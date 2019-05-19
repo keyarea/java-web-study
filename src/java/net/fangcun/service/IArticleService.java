@@ -1,6 +1,8 @@
 package net.fangcun.service;
 
 import net.fangcun.domain.Article;
+import net.fangcun.domain.Category;
+import net.fangcun.domain.Tag;
 
 public interface IArticleService {
 
