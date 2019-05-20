@@ -1,7 +1,8 @@
 $(function () {
     var id = GetUrlParam("id");
-    // console.log(id);
-    $.ajax("/admin/getArticleDetail", {
+    console.log(id);
+    // TODO 获取所有的分类以及标签,然后用jquery标记本身文章的分类和标签
+/*    $.ajax("/admin/getArticleDetail", {
         method: "POST",
         data: {
             id: id
@@ -15,7 +16,7 @@ $(function () {
             console.log(error);
         }
 
-    })
+    })*/
 });
 
 /**

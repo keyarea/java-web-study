@@ -27,9 +27,10 @@ public class getArticleDetailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
 
-        if(id == null || id.trim().equals("")){
+        if(id == null){
             response.sendError(400, "错误的请求参数!!");
         }
+
 
         int articleID = Integer.parseInt(id);
 
