@@ -263,4 +263,22 @@ public class ArticleDaoImpl implements IArticleDao {
         return article;
     }
 
+    @Override
+    public boolean insert(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "INSERT INTO article(title, content) VALUES(?, ?)";
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOk;
+    }
+
 }

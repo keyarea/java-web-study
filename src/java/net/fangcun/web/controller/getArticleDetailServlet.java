@@ -40,22 +40,19 @@ public class getArticleDetailServlet extends HttpServlet {
         article = articleService.addTags(article);
         article = articleService.addCategory(article);
 
+
         ITagService tagService = TagServiceImpl.getInstance();
         Tag[] tags = tagService.find();
 
-        ICategoryService categoryService = CategoryServiceImpl.getInstance();
-        Category[] categories = categoryService.find();
-
-        Tag[] articleTags = article.getTags();
-        Category articleCategory = article.getCategory();
-
         JSONObject res = new JSONObject();
 
-        JSONArray categoryJson = getSelectedCategory(categories, articleCategory);
 
-        JSONArray tagJson = getSelectedTag(tags, articleTags);
 
-        res.put("category", categoryJson);
+        String categoryJSON = article.getCategory().getId();
+        res.put("category", categoryJSON);
+
+        JSONArray tagJson = this.addTags(article.getTags());
+
         res.put("tag", tagJson);
 
         PrintWriter out = response.getWriter();
@@ -69,50 +66,15 @@ public class getArticleDetailServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
-
     }
 
-    private JSONArray getSelectedCategory(Category[] categories, Category selectedCategory){
-        JSONArray result = new JSONArray();
-
-        for (Category category : categories){
-            JSONObject categoryItem = new JSONObject();
-            categoryItem.put("id", category.getId());
-            categoryItem.put("name", category.getName());
-            categoryItem.put("checked", false);
-            if(category.getId().equals(selectedCategory.getId())){
-                categoryItem.put("checked", true);
-            }
-            result.put(categoryItem);
+    private JSONArray addTags(Tag[] tags){
+        JSONArray jsonArray = new JSONArray();
+        for (Tag tag:tags){
+            jsonArray.put(tag.getId());
         }
-        return result;
+        return jsonArray;
     }
 
-    private JSONArray getSelectedTag(Tag[] tags, Tag[] selectedTags){
-        JSONArray result = new JSONArray();
-
-        for (Tag tag : tags){
-            JSONObject tagItem = new JSONObject();
-            tagItem.put("id", tag.getId());
-            tagItem.put("name", tag.getName());
-            tagItem.put("checked", false);
-            if(isExist(tag.getId(), selectedTags)){
-                tagItem.put("checked", true);
-            }
-            result.put(tagItem);
-        }
-
-        return result;
-    }
-
-    private boolean isExist(String id, Tag[] tags){
-        boolean result = false;
-        for (Tag tag: tags){
-            if(tag.getId().equals(id)){
-                result = true;
-            }
-        }
-        return result;
-    }
 
 }

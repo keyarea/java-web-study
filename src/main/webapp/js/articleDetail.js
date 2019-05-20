@@ -1,22 +1,28 @@
 $(function () {
     var id = GetUrlParam("id");
-    console.log(id);
-    // TODO 获取所有的分类以及标签,然后用jquery标记本身文章的分类和标签
-/*    $.ajax("/admin/getArticleDetail", {
-        method: "POST",
-        data: {
-            id: id
-        },
-        success: function (res) {
-            console.log(res);
-            insertArticleTags(res.tag);
-            insertArticleCategories(res.category);
-        },
-        error: function (error) {
-            console.log(error);
-        }
+    //console.log(id);
+    //用jquery标记本身文章的分类和标签
 
-    })*/
+    if(id){
+        $.ajax("/admin/getArticleDetail", {
+            method: "POST",
+            data: {
+                id: id
+            },
+            success: function (res) {
+                console.log(res);
+                if(res.tag){
+                    checkedArticleTags(res.tag);
+                }
+                if(res.category){
+                    checkedArticleCategory(res.category);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
 });
 
 /**
@@ -26,74 +32,74 @@ $("#saveArticle").click(function (e) {
     var id = GetUrlParam("id");
     var title = $("input[name='title']").val();
     var content = editor.getMarkdown();
-    var categoty = $("input[name='category']:checked").val();
+    var category = $("input[name='category']:checked").val();
     var tags = [];
     $("input[name='tag']:checked").each(function () {
         tags.push($(this).val()); // 向数组中添加元素
     });
-    console.log(id, title, content, categoty, tags);
+
+    if(id){
+        updateArticle(id, title, content, category, tags);
+    }else{
+        insertArticle(title, content, category, tags);
+    }
 });
 
 /**
- * 发起ajax请求,保存该数据到服务器
+ * 发起ajax请求,保存该数据到服务器.
  * @param title
  * @param content
  * @param category
  * @param tags
  */
 function insertArticle(title, content, category, tags){
-    $("/admin/insertArticle")
+    $.ajax("/admin/insertArticle", {
+        method: "POST",
+        traditional: true,
+        data: {
+            title: title,
+            content: content,
+            category: category,
+            tags: tags
+        },
+        success: function(res){
+            console.log(res);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    })
+}
+
+/**
+ * 发起ajax请求,更新文章.
+ * @param id
+ * @param title
+ * @param content
+ * @param category
+ * @param tags
+ */
+function updateArticle(id, title, content, category, tags){
+
 }
 
 /**
  * 文章页中插入所有标签,选中文章的标签
  */
-function insertArticleTags(tags) {
+function checkedArticleTags(tags) {
     //console.log(tags);
-    for(var i = 0, l = tags.length; i< l; i++){
-        var checked = tags[i].checked ? "checked" : "";
-        var id = tags[i].id;
-        var name = tags[i].name;
-        var content = "<div class=\"form-check\">\n" +
-            "  <input class=\"form-check-input\" name=\"tag\" type=\"checkbox\" value=\"" +
-            id +
-            "\" " +
-            checked + " "+
-            "id=\"" +
-            "tag-" + id +
-            "" +
-            "\">\n" +
-            "  <label class=\"form-check-label\" for=\"" +
-            "tag-" +id +
-            "\">\n" +
-            name +
-            "  </label>\n" +
-            "</div>";
-        $("#articleTag").append(content);
+    for(var i = 0, l = tags.length;i < l;i++){
+        var id = tags[i];
+        $("#tag-" + id).attr("checked", "checkde");
     }
 }
 
 /**
  * 文章页中插入所有分类,选中文章的分类
  */
-function insertArticleCategories(categories) {
-    //console.log(categories);
-    for (var i = 0, l = categories.length;i< l;i++){
-        var checked = categories[i].checked ? "checked" : "";
-        var id = categories[i].id;
-        var name = categories[i].name;
-        var content = "<div class=\"form-check\">\n" +
-            "  <input class=\"form-check-input\" type=\"radio\" name=\"category\" id=\"" +
-            "category-" + id + "\" value=\"" + id + "\"" +
-            checked + ">\n" +
-            "  <label class=\"form-check-label\" for=\"" +
-            "category-" +id+"\">\n" +
-            name+
-                "  </label>\n" +
-            "</div>";
-        $("#articleCategory").append(content);
-
-    }
+function checkedArticleCategory(category) {
+    //console.log(category);
+    $("#category-" + category).attr("checked", "checked");
 }
 
 //paraName 等找参数的名称

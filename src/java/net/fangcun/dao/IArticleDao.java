@@ -49,5 +49,12 @@ public interface IArticleDao   {
      */
     boolean delete(int id);
 
+    /**
+     * 创建一个新的文章
+     * @param article
+     * @return
+     */
+    boolean insert(Article article);
+
 }
 

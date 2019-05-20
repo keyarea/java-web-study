@@ -84,6 +84,21 @@
                     文章标签
                 </div>
                 <div class="card-body" id="articleTag" >
+                    <c:choose>
+                        <c:when test="empty tags">
+                            <p>暂无标签</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="tag" items="${tags}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="tag" value="${tag.id}" id="tag-${tag.id}">
+                                    <label class="form-check-label" for="tag-${tag.id}">
+                                        ${tag.name}
+                                    </label>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
 
                 </div>
             </div>
@@ -98,6 +113,22 @@
                             未分类
                         </label>
                     </div>
+                    <c:choose>
+                        <c:when test="empty categories">
+                            <p>暂无分类</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="category" items="${categories}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="category-${category.id}" value="${category.id}">
+                                    <label class="form-check-label" for="category-${category.id}">
+                                        ${category.name}
+                                    </label>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+
 
                 </div>
             </div>
