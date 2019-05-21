@@ -119,7 +119,10 @@ public class ArticleServiceImpl implements IArticleService {
         article.setId(String.valueOf(articleID));
 
         // 关联分类
-        // TODO 关联分类
+        boolean addCategoryResult = articleDao.addCategory(article);
+
+        // 关联标签
+        boolean addTagsResult = articleDao.addTags(article);
 
         return true;
     }

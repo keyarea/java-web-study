@@ -58,6 +58,7 @@ public class insertArticleServlet extends HttpServlet {
             article.setTags(tags);
         }
         articleService.insert(article);
+        response.setStatus(200);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

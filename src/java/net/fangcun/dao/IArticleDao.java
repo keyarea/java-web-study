@@ -57,6 +57,19 @@ public interface IArticleDao   {
     int insert(Article article);
 
 
+    /**
+     * 给文章在数据库中关联分类
+     * @param article
+     * @return
+     */
+    boolean addCategory(Article article);
+
+    /**
+     * 给文章关联多个标签
+     * @param article
+     * @return
+     */
+    boolean addTags(Article article);
 
 }
 

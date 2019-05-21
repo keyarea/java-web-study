@@ -274,7 +274,7 @@ public class ArticleDaoImpl implements IArticleDao {
 
             String sql = "INSERT INTO article(title, content) VALUES(?, ?)";
 
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, article.getTitle());
 
@@ -295,6 +295,67 @@ public class ArticleDaoImpl implements IArticleDao {
         return id;
     }
 
+    @Override
+    public boolean addCategory(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            int articleID = Integer.parseInt(article.getId());
+            int categoryID = Integer.parseInt(article.getCategory().getId());
 
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "UPDATE article SET category = ? WHERE id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, categoryID);
+
+            preparedStatement.setInt(2, articleID);
+
+
+            int result = preparedStatement.executeUpdate();
+
+            isOk = result > 0;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isOk;
+    }
+
+    @Override
+    public boolean addTags(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            int articleID = Integer.parseInt(article.getId());
+            Tag[] tags = article.getTags();
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "INSERT INTO article_tag(article, tag) VALUES(?, ?)";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            connection.setAutoCommit(false);
+            for(Tag tag: tags){
+                preparedStatement.setInt(1, Integer.parseInt(article.getId()));
+                preparedStatement.setInt(2, Integer.parseInt(tag.getId()));
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+            connection.commit();
+            isOk = true;
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isOk;
+    }
 
 }
