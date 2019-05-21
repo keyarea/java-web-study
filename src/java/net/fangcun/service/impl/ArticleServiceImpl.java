@@ -119,12 +119,38 @@ public class ArticleServiceImpl implements IArticleService {
         article.setId(String.valueOf(articleID));
 
         // 关联分类
-        boolean addCategoryResult = articleDao.addCategory(article);
+        if(article.getCategory() != null){
+            boolean addCategoryResult = articleDao.addCategory(article);
+        }
 
         // 关联标签
-        boolean addTagsResult = articleDao.addTags(article);
+        if(article.getTags() != null){
+            boolean addTagsResult = articleDao.addTags(article);
+        }
 
         return true;
+    }
+
+    @Override
+    public boolean update(Article article){
+        //
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        boolean updatedArticle = articleDao.update(article);
+
+        if(article.getCategory() != null){
+            boolean updateCategory = articleDao.addCategory(article);
+        }else{
+            boolean updateCategory = articleDao.deleteCategory(article);
+        }
+
+        boolean deleteTags = articleDao.deleteTags(article);
+
+        if(article.getTags() != null){
+            boolean updateTags = articleDao.addTags(article);
+        }
+
+        return true;
+
     }
 
 }

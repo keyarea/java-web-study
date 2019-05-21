@@ -85,7 +85,24 @@ $("#savedArticleModal").on("hide.bs.modal", function(e){
  * @param tags
  */
 function updateArticle(id, title, content, category, tags){
-
+    $.ajax("/admin/updateArticle", {
+        method: "POST",
+        traditional: true,
+        data: {
+            id: id,
+            title: title,
+            content: content,
+            category: category,
+            tags: tags
+        },
+        success: function(res){
+            $("#savedArticleModal").modal({
+            })
+        },
+        error: function(error){
+            console.log(error);
+        }
+    })
 }
 
 /**

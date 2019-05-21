@@ -8,10 +8,7 @@ import net.fangcun.domain.Tag;
 import net.fangcun.domain.User;
 import net.fangcun.util.JdbcUtils_C3P0;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ArticleDaoImpl implements IArticleDao {
@@ -303,7 +300,8 @@ public class ArticleDaoImpl implements IArticleDao {
         boolean isOk = false;
         try{
             int articleID = Integer.parseInt(article.getId());
-            int categoryID = Integer.parseInt(article.getCategory().getId());
+
+            String categoryID = article.getCategory().getId();
 
             connection = JdbcUtils_C3P0.getConnection();
 
@@ -311,7 +309,7 @@ public class ArticleDaoImpl implements IArticleDao {
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, categoryID);
+            preparedStatement.setString(1, categoryID);
 
             preparedStatement.setInt(2, articleID);
 
@@ -321,6 +319,9 @@ public class ArticleDaoImpl implements IArticleDao {
             isOk = result > 0;
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+
         }
         return isOk;
     }
@@ -354,6 +355,103 @@ public class ArticleDaoImpl implements IArticleDao {
 
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOk;
+    }
+
+    @Override
+    public boolean update(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            int articleID = Integer.parseInt(article.getId());
+            Tag[] tags = article.getTags();
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "UPDATE article SET title = ?,content = ? WHERE id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, article.getTitle());
+
+            preparedStatement.setString(2, article.getContent());
+
+            preparedStatement.setString(3, article.getId());
+
+            int result = preparedStatement.executeUpdate();
+
+            isOk = result > 0;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOk;
+    }
+
+    @Override
+    public boolean deleteTags(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            int articleID = Integer.parseInt(article.getId());
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "DELETE FROM article_tag WHERE article = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, article.getId());
+
+            int result = preparedStatement.executeUpdate();
+
+            isOk = result > 0;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return isOk;
+    }
+
+    @Override
+    public boolean deleteCategory(Article article){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean isOk = false;
+        try{
+            int articleID = Integer.parseInt(article.getId());
+
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "UPDATE article SET category = ? WHERE id = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setNull(1, Types.INTEGER);
+
+            preparedStatement.setInt(2, articleID);
+
+
+            int result = preparedStatement.executeUpdate();
+
+            isOk = result > 0;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
         return isOk;
     }

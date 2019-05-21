@@ -71,5 +71,25 @@ public interface IArticleDao   {
      */
     boolean addTags(Article article);
 
+    /**
+     * 更新文章,并返回是否更新成功
+     * @param article
+     * @return
+     */
+    boolean update(Article article);
+
+    /**
+     * 删除文章关联的标签
+     * @param article
+     * @return
+     */
+    boolean deleteTags(Article article);
+
+    /**
+     * 删除文章关联的分类
+     * @param article
+     * @return
+     */
+    boolean deleteCategory(Article article);
 }
 

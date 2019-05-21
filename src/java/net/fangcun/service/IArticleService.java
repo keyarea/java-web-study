@@ -71,4 +71,11 @@ public interface IArticleService {
      * @return
      */
     boolean insert(Article article);
+
+    /**
+     * 更新文章
+     * @param article
+     * @return
+     */
+    boolean update(Article article);
 }

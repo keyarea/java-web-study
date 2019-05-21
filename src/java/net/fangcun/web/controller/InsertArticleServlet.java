@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "insertArticleServlet", urlPatterns = "/admin/insertArticle")
-public class insertArticleServlet extends HttpServlet {
+@WebServlet(name = "InsertArticleServlet", urlPatterns = "/admin/insertArticle")
+public class InsertArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String categoryID = request.getParameter("category");
