@@ -63,13 +63,18 @@ function insertArticle(title, content, category, tags){
             tags: tags
         },
         success: function(res){
-            console.log(res);
+            $("#savedArticleModal").modal({
+            })
         },
         error: function(error){
             console.log(error);
         }
     })
 }
+
+$("#savedArticleModal").on("hide.bs.modal", function(e){
+    window.location.href = "/admin/article";
+});
 
 /**
  * 发起ajax请求,更新文章.
