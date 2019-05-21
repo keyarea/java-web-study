@@ -264,21 +264,37 @@ public class ArticleDaoImpl implements IArticleDao {
     }
 
     @Override
-    public boolean insert(Article article){
+    public int insert(Article article){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        boolean isOk = false;
+        int id = -1;
         try{
             connection = JdbcUtils_C3P0.getConnection();
 
             String sql = "INSERT INTO article(title, content) VALUES(?, ?)";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, article.getTitle());
+
+            preparedStatement.setString(2, article.getContent());
+
+            preparedStatement.executeUpdate();
+
+            resultSet = preparedStatement.getGeneratedKeys();
+
+            if(resultSet.next()){
+                id = resultSet.getInt(1);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
         }
-        return isOk;
+        return id;
     }
+
+
 
 }

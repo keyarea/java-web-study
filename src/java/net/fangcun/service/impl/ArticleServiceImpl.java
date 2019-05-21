@@ -106,4 +106,22 @@ public class ArticleServiceImpl implements IArticleService {
         return article;
     }
 
+    @Override
+    public boolean insert(Article article){
+        // 得到数据库操作实例对象
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        // 将除了外键字段的数据创建一个文章，并返回自增列
+        int articleID = articleDao.insert(article);
+        if(articleID == -1){
+            return false;
+        }
+        // 给文章对象增加id属性值
+        article.setId(String.valueOf(articleID));
+
+        // 关联分类
+        // TODO 关联分类
+
+        return true;
+    }
+
 }

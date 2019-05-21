@@ -83,7 +83,7 @@ public class LoginUIServlet extends HttpServlet {
         // 用户登录
         User user = userService.loginUser(name, password);
 
-        // TODO 用户登录
+        //  用户登录
         if(user == null){
             Map<String, String> errors =  new HashMap<String, String>();
             errors.put("name", "用户名或密码输入错误");

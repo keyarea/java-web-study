@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
         // 用户登录
         User user = userService.loginUser(name, password);
 
-        // TODO 用户登录
+        //  用户登录
         if(user == null){
             response.sendRedirect("login");
             return;

@@ -64,4 +64,11 @@ public interface IArticleService {
      * @return
      */
     Article find(int id);
+
+    /**
+     * 插入创建一个文章
+     * @param article
+     * @return
+     */
+    boolean insert(Article article);
 }

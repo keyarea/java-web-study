@@ -50,11 +50,13 @@ public interface IArticleDao   {
     boolean delete(int id);
 
     /**
-     * 创建一个新的文章
+     * 创建一个新的文章,并返回自增列
      * @param article
      * @return
      */
-    boolean insert(Article article);
+    int insert(Article article);
+
+
 
 }
 

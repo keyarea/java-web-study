@@ -26,32 +26,38 @@ public class insertArticleServlet extends HttpServlet {
         String content = request.getParameter("content");
         String[] tagsID = request.getParameterValues("tags");
 
-        if(title == null || categoryID == null || content == null || tagsID == null){
+        if(title == null || content == null ){
             response.sendError(400);
+            return;
         }
 
         Article article = new Article();
         article.setTitle(title);
         article.setContent(content);
 
-        if(!categoryID.trim().equals("")){
-            ICategoryService categoryService = CategoryServiceImpl.getInstance();
-            Category category = categoryService.find(Integer.parseInt(categoryID));
+        IArticleService articleService = ArticleServiceImpl.getInstance();
+
+
+        if(categoryID != null && !categoryID.trim().equals("")){
+            Category category = new Category();
+            category.setId(categoryID);
             article.setCategory(category);
         }
 
-        if(tagsID.length != 0){
+        if(tagsID != null && tagsID.length != 0){
             ArrayList<Tag> tagList = new ArrayList<>();
             ITagService tagService = TagServiceImpl.getInstance();
             for(String tagID: tagsID){
                 if(!tagID.trim().equals("")){
-                    Tag tag = tagService.find(Integer.parseInt(tagID));
-                    tagList.add(tag);
+                   Tag tag = new Tag();
+                   tag.setId(tagID);
+                   tagList.add(tag);
                 }
             }
             Tag[] tags = tagList.toArray(new Tag[0]);
             article.setTags(tags);
         }
+        articleService.insert(article);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
