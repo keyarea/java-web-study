@@ -14,78 +14,80 @@
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
 <body>
 
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
+    <div class="container my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="tag" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
 
-<div class="container my-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="tag" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-
-            <div class="card">
-                <div class="card-header">
-                    <strong>标签管理</strong>
-                </div>
-                <div class="card-body">
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-8">
-                            <form class="form-inline">
-                                <div class="form-group mb-2">
-                                    <label for="keyword" class="sr-only">关键词</label>
-                                    <input type="password" class="form-control" id="keyword" placeholder="关键词">
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
-                            </form>
-                        </div>
-                        <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editTagModal">添加标签</button>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>标签管理</strong>
                     </div>
+                    <div class="card-body">
 
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" nowrap>#</th>
-                                <th scope="col" nowrap>标签名称</th>
-                                <th scope="col" nowrap>文章数量</th>
-                                <th scope="col" nowrap>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:choose>
-                                <c:when test="${empty tags}">
-                                    <tr>
-                                        <td class="text-center" colspan="4">暂无数据</td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="tag" items="${tags}" >
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-lg-8">
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">
+                                        <label for="keyword" class="sr-only">关键词</label>
+                                        <input type="password" class="form-control" id="keyword" placeholder="关键词">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
+                                </form>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center">
+                                <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editTagModal">添加标签</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col" nowrap>#</th>
+                                    <th scope="col" nowrap>标签名称</th>
+                                    <th scope="col" nowrap>文章数量</th>
+                                    <th scope="col" nowrap>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${empty tags}">
                                         <tr>
-                                            <th scope="row" class="align-middle" nowrap>${tag.id}</th>
-                                            <td class="align-middle" nowrap>${tag.name}</td>
-                                            <td class="align-middle" nowrap>${fn:length(tag.articles)}</td>
-                                            <td class="align-middle" nowrap>
-                                                <button type="button" class="btn-info btn  btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#editTagModal">编辑</button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#deleteTagModal">删除</button>
-                                            </td>
+                                            <td class="text-center" colspan="4">暂无数据</td>
                                         </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                            </tbody>
-                        </table>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="tag" items="${tags}" >
+                                            <tr>
+                                                <th scope="row" class="align-middle" nowrap>${tag.id}</th>
+                                                <td class="align-middle" nowrap>${tag.name}</td>
+                                                <td class="align-middle" nowrap>${fn:length(tag.articles)}</td>
+                                                <td class="align-middle" nowrap>
+                                                    <button type="button" class="btn-info btn  btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#editTagModal">编辑</button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="${tag.id}" data-toggle="modal" data-target="#deleteTagModal">删除</button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <%--删除标签模态框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteTagModal">

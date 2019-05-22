@@ -14,74 +14,75 @@
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
 <body>
 
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-
-<div class="container my-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="user" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-            <div class="card">
-                <div class="card-header">
-                   <strong>用户管理</strong>
-                </div>
-                <div class="card-body">
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-8">
-                            <form class="form-inline">
-                                <div class="form-group mb-2">
-                                    <label for="keyword" class="sr-only">关键词</label>
-                                    <input type="text" class="form-control" id="keyword" placeholder="关键词">
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
-                            </form>
-                        </div>
-                        <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editUserModal">添加用户</button>
-                        </div>
+    <div class="container my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="user" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>用户管理</strong>
                     </div>
+                    <div class="card-body">
 
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" nowrap>#</th>
-                                <th scope="col" nowrap>用户名</th>
-                                <th scope="col" nowrap>昵称</th>
-                                <th scope="col" nowrap>文章数</th>
-                                <th scope="col" nowrap>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:choose>
-                                <c:when test="${empty users}">
-                                    <tr>
-                                        <td colspan="5" class="text-center">暂无数据</td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="user" items="${users}" >
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-lg-8">
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">
+                                        <label for="keyword" class="sr-only">关键词</label>
+                                        <input type="text" class="form-control" id="keyword" placeholder="关键词">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
+                                </form>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center">
+                                <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editUserModal">添加用户</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col" nowrap>#</th>
+                                    <th scope="col" nowrap>用户名</th>
+                                    <th scope="col" nowrap>昵称</th>
+                                    <th scope="col" nowrap>文章数</th>
+                                    <th scope="col" nowrap>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${empty users}">
                                         <tr>
-                                            <th nowrap scope="row" class="align-middle">${user.id}</th>
-                                            <td nowrap class="align-middle">${user.name}</td>
-                                            <td nowrap class="align-middle">${user.nickname}</td>
-                                            <td nowrap class="align-middle">${fn:length(user.articles)}</td>
-                                            <td nowrap class="align-middle">
-                                                <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
-                                            </td>
+                                            <td colspan="5" class="text-center">暂无数据</td>
                                         </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                            </tbody>
-                        </table>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="user" items="${users}" >
+                                            <tr>
+                                                <th nowrap scope="row" class="align-middle">${user.id}</th>
+                                                <td nowrap class="align-middle">${user.name}</td>
+                                                <td nowrap class="align-middle">${user.nickname}</td>
+                                                <td nowrap class="align-middle">${fn:length(user.articles)}</td>
+                                                <td nowrap class="align-middle">
+                                                    <button type="button" class="btn-info btn  btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#editUserModal">编辑</button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="${user.id}" data-toggle="modal" data-target="#deleteUserModal">删除</button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

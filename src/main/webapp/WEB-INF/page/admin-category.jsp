@@ -15,79 +15,83 @@
 <body>
 
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
+    <div class="container my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="category" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
 
-<div class="container my-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="category" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-
-            <div class="card">
-                <div class="card-header">
-                    <strong>分类管理</strong>
-                </div>
-                <div class="card-body">
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-8">
-                            <form class="form-inline">
-                                <div class="form-group mb-2">
-                                    <label for="keyword" class="sr-only">关键词</label>
-                                    <input type="text" class="form-control" id="keyword" placeholder="关键词">
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
-                            </form>
-                        </div>
-                        <div class="col-12 col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editCategoryModal">添加分类</button>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>分类管理</strong>
                     </div>
+                    <div class="card-body">
 
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" nowrap>#</th>
-                                <th scope="col" nowrap>分类名称</th>
-                                <th scope="col" nowrap>文章数量</th>
-                                <th scope="col" nowrap>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:choose>
-                                <c:when test="${empty categories}">
-                                    <tr>
-                                        <td  colspan="4" class="text-center">暂无数据</td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach  items="${categories}" var="category">
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-lg-8">
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">
+                                        <label for="keyword" class="sr-only">关键词</label>
+                                        <input type="text" class="form-control" id="keyword" placeholder="关键词">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2 ml-2">搜索</button>
+                                </form>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center">
+                                <button type="button" class="btn btn-success btn-block" data-id="" data-toggle="modal" data-target="#editCategoryModal">添加分类</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col" nowrap>#</th>
+                                    <th scope="col" nowrap>分类名称</th>
+                                    <th scope="col" nowrap>文章数量</th>
+                                    <th scope="col" nowrap>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${empty categories}">
                                         <tr>
-                                            <th class="align-middle" nowrap>${category.id}</th>
-                                            <td class="align-middle" nowrap>${category.name}</td>
-                                            <td class="align-middle" nowrap>${fn:length(category.articles)}</td>
-                                            <td class="align-middle" nowrap>
-                                                <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editCategoryModal">编辑</button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteCategoryModal">删除</button>
-                                            </td>
+                                            <td  colspan="4" class="text-center">暂无数据</td>
                                         </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach  items="${categories}" var="category">
+                                            <tr>
+                                                <th class="align-middle" nowrap>${category.id}</th>
+                                                <td class="align-middle" nowrap>${category.name}</td>
+                                                <td class="align-middle" nowrap>${fn:length(category.articles)}</td>
+                                                <td class="align-middle" nowrap>
+                                                    <button type="button" class="btn-info btn  btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#editCategoryModal">编辑</button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="${category.id}" data-toggle="modal" data-target="#deleteCategoryModal">删除</button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
+
+
 </div>
+
+
 
 <%--删除分类模态框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteCategoryModal">

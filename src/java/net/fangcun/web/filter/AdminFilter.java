@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter(filterName = "AdminFilter", urlPatterns = "/admin/*")
+@WebFilter(filterName = "AdminFilter", urlPatterns = "/admin/*")
 public class AdminFilter implements Filter {
 
     @Override

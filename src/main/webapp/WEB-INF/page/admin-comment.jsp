@@ -13,20 +13,23 @@
 <body>
 
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<div class="container my-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="comment" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-            <h1>评论</h1>
+    <div class="container my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="comment" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
+                <h1>评论</h1>
+            </div>
         </div>
     </div>
 </div>
+
 
 <%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 

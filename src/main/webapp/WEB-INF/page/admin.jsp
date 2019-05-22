@@ -14,28 +14,31 @@
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
 <body>
 
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
-
-<div class="container mt-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="index" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-            <div class="card">
-                <div class="card-header">
-                    系统概况
-                </div>
-                <div class="card-body">
-                    数据库数据统计：
+    <div class="container mt-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="index" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="card">
+                    <div class="card-header">
+                        系统概况
+                    </div>
+                    <div class="card-body">
+                        数据库数据统计：
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 
 <%@include file="/WEB-INF/page/_partial/footer.jsp"%>

@@ -12,21 +12,24 @@
 <jsp:include page="/WEB-INF/page/_partial/admin/head.jsp"/>
 <body>
 
+<div class="main">
+    <jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
 
-<jsp:include page="/WEB-INF/page/_partial/admin/header.jsp" />
-
-<div class="container my-4">
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
-            <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
-                <jsp:param name="navParam" value="notice" />
-            </jsp:include>
-        </div>
-        <div class="col-12 col-lg-9">
-            <h1>广播</h1>
+    <div class="container my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-3 navbar-collapse collapse d-lg-block" id="adminNav">
+                <jsp:include page="/WEB-INF/page/_partial/admin/aside.jsp" >
+                    <jsp:param name="navParam" value="notice" />
+                </jsp:include>
+            </div>
+            <div class="col-12 col-lg-9">
+                <h1>广播</h1>
+            </div>
         </div>
     </div>
 </div>
+
+
 
 
 

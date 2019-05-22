@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" id="footer">
     <div class="container">
         <blockquote class="blockquote">
             <p class="mb-0">方寸之间见天地，细微之处有乾坤。</p>
