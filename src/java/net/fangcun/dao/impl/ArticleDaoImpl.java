@@ -456,4 +456,30 @@ public class ArticleDaoImpl implements IArticleDao {
         return isOk;
     }
 
+    @Override
+    public int count(){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int count = 0;
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT count(*) FROM article";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                count = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return count;
+    }
+
 }

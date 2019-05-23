@@ -91,5 +91,11 @@ public interface IArticleDao   {
      * @return
      */
     boolean deleteCategory(Article article);
+
+    /**
+     * 查询文章数量
+     * @return
+     */
+    int count();
 }
 

@@ -88,7 +88,7 @@
                </div>
         </div>
         <div class="col-12 col-md-4">
-            <%@include file="WEB-INF/page/_partial/aside.jsp"%>
+            <%@include file="_partial/aside.jsp"%>
         </div>
     </div>
 </div>
