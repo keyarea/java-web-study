@@ -153,4 +153,16 @@ public class ArticleServiceImpl implements IArticleService {
 
     }
 
+    @Override
+    public int ArticleCount(){
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        return articleDao.count();
+    }
+
+    @Override
+    public Article[] getNewArticles(int limit, int skip) {
+        IArticleDao articleDao = ArticleDaoImpl.getInstance();
+        return articleDao.find(limit, skip);
+    }
+
 }

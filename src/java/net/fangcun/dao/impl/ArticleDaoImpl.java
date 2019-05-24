@@ -482,4 +482,42 @@ public class ArticleDaoImpl implements IArticleDao {
         return count;
     }
 
+    @Override
+    public Article[] find(int limit, int skip){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Article> articles = new ArrayList<>();
+        try{
+            connection = JdbcUtils_C3P0.getConnection();
+
+            String sql = "SELECT id,createTime,title,content,updateTime FROM article ORDER BY createTime DESC LIMIT ?,?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, skip);
+
+            preparedStatement.setInt(2, limit);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Article article = new Article();
+
+                article.setId(String.valueOf(resultSet.getInt("id")));
+                article.setTitle(resultSet.getString("title"));
+                article.setContent(resultSet.getString("content"));
+                article.setUpdateTime(resultSet.getTimestamp("updateTime"));
+                article.setCreateTime(resultSet.getTimestamp("createTime"));
+                articles.add(article);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtils_C3P0.release(connection, preparedStatement, resultSet);
+        }
+        return articles.toArray(new Article[0]);
+    }
+
 }

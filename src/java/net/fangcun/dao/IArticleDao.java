@@ -97,5 +97,13 @@ public interface IArticleDao   {
      * @return
      */
     int count();
+
+    /**
+     * 得到文章
+     * @param limit
+     * @param skip
+     * @return
+     */
+    Article[] find(int limit, int skip);
 }
 

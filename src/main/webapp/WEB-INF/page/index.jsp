@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: key
@@ -39,30 +42,28 @@
                        <p class="card-text">推荐您阅读的好文章</p>
 
                        <ul class="list-group list-group-flush text-left">
-                           <a href="/article" class="list-group-item list-group-item-action flex-column align-items-start">
-                               <div class="d-flex w-100 justify-content-between">
-                                   <h5 class="mb-1">你好，世界</h5>
-                                   <small>1小时之前</small>
-                               </div>
-                               <p class="mb-1">世界是一个大家庭</p>
-                               <small>阅读量：1000       赞：1000 </small>
-                           </a>
-                           <a href="/article" class="list-group-item list-group-item-action flex-column align-items-start">
-                               <div class="d-flex w-100 justify-content-between">
-                                   <h5 class="mb-1">List group item heading</h5>
-                                   <small class="text-muted">3天之前</small>
-                               </div>
-                               <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                               <small class="text-muted">Donec id elit non mi porta.</small>
-                           </a>
-                           <a href="/article" class="list-group-item list-group-item-action flex-column align-items-start">
-                               <div class="d-flex w-100 justify-content-between">
-                                   <h5 class="mb-1">List group item heading</h5>
-                                   <small class="text-muted">1周之前</small>
-                               </div>
-                               <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                               <small class="text-muted">Donec id elit non mi porta.</small>
-                           </a>
+                           <c:choose>
+                               <c:when test="empty articles">
+                                   <p>当前文章为空!</p>
+                               </c:when>
+                               <c:otherwise>
+                                   <c:forEach var="article" items="${articles}">
+                                       <a href="/article" class="list-group-item list-group-item-action flex-column align-items-start">
+                                           <div class="d-flex w-100 justify-content-between">
+                                               <h5 class="mb-1">${article.title}</h5>
+                                               <small>
+                                                   <fmt:formatDate value="${article.createTime}" pattern="yyyy-MM-dd HH:mm"  />
+                                               </small>
+                                           </div>
+                                           <p class="mb-1">
+                                               ${fn:substring(article.content, 0 , 100)}
+                                           </p>
+                                           <small></small>
+                                       </a>
+
+                                   </c:forEach>
+                               </c:otherwise>
+                           </c:choose>
                        </ul>
 
                        <nav aria-label="Page navigation example" class="mt-3">

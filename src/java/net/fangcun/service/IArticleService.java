@@ -78,4 +78,18 @@ public interface IArticleService {
      * @return
      */
     boolean update(Article article);
+
+    /**
+     * 获取文章数量
+     * @return
+     */
+    int ArticleCount();
+
+    /**
+     * 得到最新的文章
+     * @param limit
+     * @param skip
+     * @return
+     */
+    Article[] getNewArticles(int limit, int skip);
 }
