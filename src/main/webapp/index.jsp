@@ -10,11 +10,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="utf-8" %>
 
-<!doctype html>
 <html lang="en">
 <jsp:include page="/WEB-INF/page/_partial/head.jsp">
     <jsp:param name="pageTitle" value="首页"/>
 </jsp:include>
+<link rel="stylesheet" href="css/index.css">
 <body>
 
 <%@include file="/WEB-INF/page/_partial/header.jsp"%>
@@ -27,20 +27,27 @@
                    <div class="card-header">
                        <ul class="nav nav-tabs card-header-tabs">
                            <li class="nav-item">
-                               <a class="nav-link active btn" id="recommendArticle" href="#12">推荐文章</a>
+                               <a class="nav-link active btn" id="recommendArticle" >最新文章</a>
                            </li>
                            <li class="nav-item">
-                               <a class="nav-link btn" id="popularArticle" href="#122">热门文章</a>
+                               <a class="nav-link btn" id="popularArticle" >热门文章</a>
                            </li>
                            <li class="nav-item">
-                               <a class="nav-link btn" id="newArticle" href="#123">最新文章</a>
+                               <a class="nav-link btn" id="newArticle" >推荐文章</a>
                            </li>
                        </ul>
                    </div>
                    <div class="card-body">
-                       <h5 class="card-title">推荐文章</h5>
-                       <p class="card-text">推荐您阅读的好文章</p>
-
+                       <div class="loading">
+                           <span></span>
+                           <span></span>
+                           <span></span>
+                           <span></span>
+                           <span></span>
+                       </div>
+<%--                       <h5 class="card-title">最新文章</h5>--%>
+<%--                       <p class="card-text">最近发表的好文章</p>--%>
+<%--
                        <ul class="list-group list-group-flush text-left">
                            <c:choose>
                                <c:when test="empty articles">
@@ -64,7 +71,7 @@
                                    </c:forEach>
                                </c:otherwise>
                            </c:choose>
-                       </ul>
+                       </ul>--%>
 
                        <nav aria-label="Page navigation example" class="mt-3">
                            <ul class="pagination justify-content-center">
@@ -89,12 +96,13 @@
                </div>
         </div>
         <div class="col-12 col-md-4">
-            <%@include file="_partial/aside.jsp"%>
+            <%@include file="WEB-INF/page/_partial/aside.jsp"%>
         </div>
     </div>
 </div>
 
 <%@include file="/WEB-INF/page/_partial/footer.jsp"%>
 <%@include file="/WEB-INF/page/_partial/script.jsp"%>
+<script  type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

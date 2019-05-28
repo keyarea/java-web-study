@@ -17,11 +17,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-@WebServlet(name = "IndexServlet", urlPatterns = {"/","/popular", "/recommend"}, loadOnStartup = 1)
+//@WebServlet(name = "IndexServlet", urlPatterns = {"^/$","^/popular$", "^/recommend$"}, loadOnStartup = 1)
 public class IndexServlet extends HttpServlet {
     final static int PAGE_SIZE = 10;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
         // 获取到的uri
         String url = request.getRequestURI();
         // 获取的页数
@@ -87,7 +88,7 @@ public class IndexServlet extends HttpServlet {
         // 总页数
         request.setAttribute("pageCount", pageCount);
         // 总文章数
-        request.setAttribute("articlesCount", articleCount);
+        request.setAttribute("articlesCount", articleCount);*/
 
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/page/index.jsp");
         view.forward(request,response);
