@@ -22,18 +22,17 @@
 <div id="content" class="container mt-4">
     <div class="row">
         <div class="col-12 col-md-8">
-
                <div class="card text-center">
                    <div class="card-header">
                        <ul class="nav nav-tabs card-header-tabs">
                            <li class="nav-item">
-                               <a class="nav-link active btn" id="recommendArticle" >最新文章</a>
+                               <a class="nav-link active btn" id="newArticle" >最新文章</a>
                            </li>
                            <li class="nav-item">
                                <a class="nav-link btn" id="popularArticle" >热门文章</a>
                            </li>
                            <li class="nav-item">
-                               <a class="nav-link btn" id="newArticle" >推荐文章</a>
+                               <a class="nav-link btn" id="recommendArticle" >推荐文章</a>
                            </li>
                        </ul>
                    </div>
@@ -45,8 +44,9 @@
                            <span></span>
                            <span></span>
                        </div>
-<%--                       <h5 class="card-title">最新文章</h5>--%>
-<%--                       <p class="card-text">最近发表的好文章</p>--%>
+                       <ul class="list-group list-group-flush text-left" id="articleList">
+
+                       </ul>
 <%--
                        <ul class="list-group list-group-flush text-left">
                            <c:choose>

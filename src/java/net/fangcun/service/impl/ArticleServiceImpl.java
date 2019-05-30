@@ -162,7 +162,24 @@ public class ArticleServiceImpl implements IArticleService {
     @Override
     public Article[] getNewArticles(int limit, int skip) {
         IArticleDao articleDao = ArticleDaoImpl.getInstance();
-        return articleDao.find(limit, skip);
+        Article[] articles = articleDao.find(limit, skip);
+        articles = addCategory(articles);
+        articles = addAuthor(articles);
+        articles = addTags(articles);
+        return articles;
+    }
+
+    @Override
+    public boolean verifyPage(int page, int pageSize){
+        boolean is = false;
+        // 文章数量
+        int articleCount  = getInstance().ArticleCount();
+        int pageCount = articleCount / pageSize;
+        // 超过总页数,或者页数小于1,则返回404错误
+        if(page > 0 || page <= pageCount){
+           is = true;
+        }
+        return is;
     }
 
 }

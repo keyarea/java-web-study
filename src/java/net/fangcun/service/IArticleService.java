@@ -92,4 +92,12 @@ public interface IArticleService {
      * @return
      */
     Article[] getNewArticles(int limit, int skip);
+
+    /**
+     * 验证是不是范围内的页面
+     * @param page
+     * @return
+     */
+    boolean verifyPage(int page, int pageSize);
+
 }
