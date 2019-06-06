@@ -87,5 +87,37 @@ function parseListArticle(listArticle) {
 function createDomByArticle(article) {
     var articleDom = document.createElement("a");
     articleDom.href = "/article/" + article.id;
+    articleDom.className = "list-group-item list-group-item-action flex-column align-items-start";
+
+    var divDom = document.createElement("div");
+    divDom.className = "d-flex w-100 justify-content-between";
+
+    var titleDom = document.createElement("h5");
+    titleDom.className = "mb-1";
+    titleDom.innerText = article.title;
+    divDom.appendChild(titleDom);
+
+    var smallDom = document.createElement("small");
+    smallDom.innerText = article.createTime;
+    divDom.appendChild(smallDom);
+
+    articleDom.appendChild(divDom);
+
+    var articleContentDom = document.createElement("p");
+    articleContentDom.className = "mb-1";
+    articleContentDom.innerText = article.content.substring(0, 100);
+
+    articleDom.appendChild(articleContentDom);
+
+    var tagDom = document.createElement("small");
+    tagDom.innerText = "标签:";
+    for(var i = 0,l = article.tags.length;i<l;i++){
+        var tagItemDom = document.createElement("span");
+        tagItemDom.className = "badge badge-info m-1";
+        tagItemDom.innerText = article.tags[i].name;
+        tagDom.appendChild(tagItemDom);
+    }
+    articleDom.appendChild(tagDom);
+
     return articleDom;
 }
